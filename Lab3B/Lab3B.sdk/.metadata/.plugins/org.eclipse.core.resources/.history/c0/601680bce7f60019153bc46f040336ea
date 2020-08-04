@@ -1,0 +1,31 @@
+#include <stdio.h>			// Used for printf()
+#include <stdlib.h>
+#include "xparameters.h"	// Contains hardware addresses and bit masks
+#include "xil_cache.h"		// Cache Drivers
+#include "xintc.h"			// Interrupt Drivers
+#include "xintc_l.h"
+#include "xtmrctr.h"		// Timer Drivers
+#include "xtmrctr_l.h" 		// Low-level timer drivers
+#include "xil_printf.h" 	// Used for xil_printf()
+#include "xgpio.h"
+
+#include "mb_interface.h"
+#include <xbasic_types.h>
+#include <xio.h>
+
+
+int main()
+{
+	static XIntc intc;
+	static XTmrCtr axi_timer_0_Timer;
+	static XTmrCtr axi_timer_1_Timer;
+	static XGpio axi_gpio_btn_Gpio;
+
+	Xil_ICacheEnable();
+	Xil_DCacheEnable();
+
+		print("---Entering main---\n\r");
+    print("Hello World\n\r");
+
+    return 0;
+}

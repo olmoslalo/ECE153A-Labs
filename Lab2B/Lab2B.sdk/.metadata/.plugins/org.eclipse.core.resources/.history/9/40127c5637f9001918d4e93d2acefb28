@@ -1,0 +1,386 @@
+#include <stdio.h>			// Used for printf()
+#include <stdlib.h>
+#include "xparameters.h"	// Contains hardware addresses and bit masks
+#include "xil_cache.h"		// Cache Drivers
+#include "xintc.h"			// Interrupt Drivers
+#include "xintc_l.h"
+#include "xtmrctr.h"		// Timer Drivers
+#include "xtmrctr_l.h" 		// Low-level timer drivers
+#include "xil_printf.h" 	// Used for xil_printf()
+#include "xgpio.h" 			// Used for General purpose
+#include "xgpio_l.h"
+#include "mb_interface.h"
+#include <xbasic_types.h>
+#include <xio.h>
+
+#include "sleep.h"
+
+// rEncoder Outputs
+Xuint32 rEncoderButton = 0;	// 0x100
+Xuint32 rEncoderB = 1;		// 0x010
+Xuint32 rEncoderA = 1;		// 0x001
+Xuint32 rEncoderRead;
+
+int rEncoderButtonPressed = 0;
+
+Xuint32 maskA = 0b00000000000000000000000000000001;
+Xuint32 maskB = 0b00000000000000000000000000000010;
+Xuint32 maskButton = 0b00000000000000000000000000000100;
+
+int currentLed = 0;
+int ledOn = 1;
+
+int idleLedCounter = 0;
+
+XIntc intc;
+
+XTmrCtr timer0;
+int timePushed = 0;
+
+XGpio rgbleds;
+XGpio leds;
+XGpio rEncoder;
+
+// clicks
+int CW = 0;
+int CCW = 0;
+
+// states
+int rest = 1;
+
+int CW1 = 0;
+int CW2 = 0;
+int CW3 = 0;
+
+int CCW1 = 0;
+int CCW2 = 0;
+int CCW3 = 0;
+
+void led_left() {
+	currentLed += 1;
+	if (currentLed == 16) {
+		currentLed = 0;
+	}
+	XGpio_DiscreteWrite(&leds, 1, 1 << currentLed);
+
+	// Clear the previous led
+	if (currentLed == 0) {
+		XGpio_DiscreteClear(&leds, 1, 1 << 15);
+	} else {
+		XGpio_DiscreteClear(&leds, 1, 1 << (currentLed - 1));
+	}
+}
+
+void led_right() {
+	currentLed -= 1;
+	if (currentLed <= -1) {
+		currentLed = 15;
+	}
+	XGpio_DiscreteWrite(&leds, 1, 1 << currentLed);
+
+	// Clear the previous led
+	if (currentLed == 15) {
+		XGpio_DiscreteClear(&leds, 1, 1 << 0);
+	} else {
+		XGpio_DiscreteClear(&leds, 1, 1 << (currentLed + 1));
+	}
+}
+
+void led_off() {
+	XGpio_DiscreteClear(&leds, 1, 1 << currentLed);
+}
+
+void led_on() {
+	XGpio_DiscreteWrite(&leds, 1, 1 << currentLed);
+}
+
+void resetStates() {
+	CW1 = CW2 = CW3 = CCW1 = CCW2 = CCW3 = 0;
+}
+
+void rEncoderHandler() {
+
+	XIntc_Disable(&intc, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+
+	rEncoderRead = XGpio_DiscreteRead(&rEncoder, 1);
+	rEncoderButton = (rEncoderRead & maskButton) / 4;
+	if (rEncoderButton == 1) {
+		rEncoderButtonPressed = 1;
+		timePushed = XTmrCtr_GetValue(&timer0, 0);
+
+	}
+
+	rEncoderB = (rEncoderRead & maskB) / 2;
+	rEncoderA = (rEncoderRead & maskA);
+
+	if (rEncoderA == 1 && rEncoderB == 1) {
+		if (CW3 == 1 && CW2 == 1 && CW1 == 1) {
+			CW = 1;
+			rest = 1;
+			resetStates();
+		} else if (CCW3 == 1 && CCW2 == 1 && CCW1 == 1) {
+			CCW = 1;
+			rest = 1;
+			resetStates();
+		} else if (CW1 == 1) {
+			CW1 = 0;
+		}
+
+		rest = 1;
+	}
+
+	else if (rEncoderA == 1 && rEncoderB == 0) {
+		if (CW2 == 1) {
+			CW2 = 0;
+		}
+		if (rest == 1) {
+			CW1 = 1;
+		}
+		if (CCW2 == 1) {
+			CCW3 = 1;
+		}
+
+	} else if (rEncoderA == 0 && rEncoderB == 0) {
+		if (CW3 == 1) {
+			CW3 = 0;
+		} else if (CW1 == 1) {
+			CW2 = 1;
+		}
+		if (CCW3 == 1) {
+			CCW3 = 0;
+		} else if (CCW1 == 1) {
+			CCW2 = 1;
+		}
+
+	} else if (rEncoderA == 0 && rEncoderB == 1) {
+		if (CW2 == 1) {
+			CW3 = 1;
+		}
+		if (CCW2 == 1) {
+			CCW2 = 0;
+			CCW1 = 1;
+		}
+		if (rest == 1) {
+			CCW1 = 1;
+		}
+
+	}
+
+	XGpio_InterruptClear(&rEncoder, XGPIO_IR_CH1_MASK);
+	XIntc_Enable(&intc, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+}
+
+int main() {
+
+	Xil_ICacheEnable();
+	Xil_DCacheEnable();
+	//microblaze_enable_exceptions();
+
+	xil_printf("---Entering main---\n\r");
+
+	XStatus status;
+
+//
+// Initialization
+//
+
+// intc
+	status = XIntc_Initialize(&intc, XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing intc\n");
+		return XST_FAILURE;
+	}
+
+// timer0
+	status = XTmrCtr_Initialize(&timer0, XPAR_AXI_TIMER_0_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing timer0\n");
+		return XST_FAILURE;
+	}
+
+// rgbleds
+	status = XGpio_Initialize(&rgbleds, XPAR_AXI_GPIO_RGBLEDS_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&rgbleds, 1, 0x00000000);
+
+// 16 leds
+	status = XGpio_Initialize(&leds, XPAR_AXI_GPIO_LED_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&rgbleds, 1, 0x00000000);
+
+// rEncoder
+	status = XGpio_Initialize(&rEncoder, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&rEncoder, 1, 0x00000003);
+
+//
+// Connect interrupt handlers
+//
+
+// rEncoderHandler
+	status = XIntc_Connect(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_GPIO_ENCODER_IP2INTC_IRPT_INTR,
+			(XInterruptHandler) rEncoderHandler, &rEncoder);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error connecting timerHandler\n");
+		return XST_FAILURE;
+	}
+
+//
+// Starts the interrupt controller
+//
+
+	status = XIntc_Start(&intc, XIN_REAL_MODE);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error starting intc\n");
+		return XST_FAILURE;
+	}
+
+//
+// Enable the interrupt sources
+//
+
+// rEncoder
+	XIntc_Enable(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_GPIO_ENCODER_IP2INTC_IRPT_INTR);
+
+//
+// Options
+//
+
+// timer0
+	XTmrCtr_SetOptions(&timer0, 0,
+	XTC_AUTO_RELOAD_OPTION | XTC_DOWN_COUNT_OPTION);
+	XTmrCtr_SetResetValue(&timer0, 0, 0x7FFFFFFF);
+
+//
+// Enable interrupts on MicroBlaze
+//
+
+	microblaze_enable_interrupts();
+
+//
+// Enable the GPIO channel interrupts so that push button can be
+// detected and enable interrupts for the GPIO device
+//
+
+	XGpio_InterruptEnable(&rEncoder, XGPIO_IR_CH1_MASK);
+	XGpio_InterruptGlobalEnable(&rEncoder);
+
+	XTmrCtr_Start(&timer0, 0);
+
+	led_on();
+
+	// idle loop
+	while (1) {
+		// 0b000001 = blue 	right rgbled
+		// 0b000010 = green right rgbled
+		// 0b000100 = red 	right rgbled
+
+		// 0b001000 = blue 	left rgbled
+		// 0b010000 = green left rgbled
+		// 0b100000 = red 	left rgbled
+		//XIntc_Disable(&intc, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+
+		// handles idle rgb led blinking
+		idleLedCounter += 1;
+		if (idleLedCounter < 100000) {
+			XGpio_DiscreteWrite(&rgbleds, 1, 0b00010);
+		} else if (idleLedCounter > 200000) {
+			idleLedCounter = 0;
+		} else {
+			XGpio_DiscreteWrite(&rgbleds, 1, 0b00000);
+		}
+
+		XIntc_Disable(&intc, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+		if (XTmrCtr_GetValue(&timer0, 0) < timePushed - 20500000) {
+
+			if (rEncoderButtonPressed == 1) {
+				if (ledOn == 1) {
+					led_off();
+					ledOn = 0;
+					resetStates();
+				} else if (ledOn == 0) {
+					led_on();
+					ledOn = 1;
+				}
+
+				rEncoderButtonPressed = 0;
+				XTmrCtr_Reset(&timer0, 0);
+
+			}
+			if (ledOn == 1) {
+				if (CCW == 1) {
+					led_left();
+					CCW = 0;
+					//resetStates();
+				} else if (CW == 1) {
+					led_right();
+					CW = 0;
+					//resetStates();
+				}
+
+			}
+
+		}
+
+		XIntc_Enable(&intc, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+
+	}
+//		for (int i = 0; i < 500000; i++) {
+//
+//			XIntc_Disable(&intc, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+//
+//			if (rEncoderButtonPressed == 1) {
+//
+//				// timePushed - X can be adjusted for shorter/longer debouncing delay
+//				// if shorter, bouncing may cause undefined behavior but you can click it fast and have it respond
+//				// if longer, bouncing won't be an issue but may miss some of your clicks due to delay
+//				if (XTmrCtr_GetValue(&timer0, 0) < timePushed - 14500000) {
+//					if (ledOn == 1) {
+//						led_off();
+//						ledOn = 0;
+//					} else if (ledOn == 0) {
+//						led_on();
+//						ledOn = 1;
+//					}
+//					rEncoderButtonPressed = 0;
+//					XTmrCtr_Reset(&timer0, 0);
+//				}
+//			}
+//			if (ledOn == 1) {
+//				if (CCW == 1) {
+//					led_left();
+//					CCW = 0;
+//					resetStates();
+//				} else if (CW == 1) {
+//					led_right();
+//					CW = 0;
+//					resetStates();
+//				}
+//
+//			}
+//
+//			// half the time turn off the rgbled
+//			if (i > 250000) {
+//				XGpio_DiscreteWrite(&rgbleds, 1, 0b00000);
+//			}
+//
+//			XIntc_Enable(&intc, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+//		}
+//
+//	}
+
+	Xil_ICacheDisable();
+	Xil_DCacheDisable();
+	return XST_SUCCESS;
+}

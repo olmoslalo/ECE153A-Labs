@@ -1,0 +1,939 @@
+/*****************************************************************************
+ * lab2a.c for Lab2A of ECE 153a at UCSB
+ * Date of the Last Update:  October 23,2014
+ *****************************************************************************/
+
+#define AO_LAB2A
+
+#include "qpn_port.h"
+#include "bsp.h"
+#include "lab2a.h"
+#include "lcd.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+typedef struct Lab2ATag {               //Lab2A State machine
+	QActive super;
+} Lab2A;
+
+/* Setup state machines */
+/**********************************************************************/
+static QState Lab2A_initial(Lab2A *me);
+static QState Lab2A_on(Lab2A *me);
+static QState tuning(Lab2A *me);
+
+/**********************************************************************/
+
+char notes[12][3] = { "C", "Cs", "D", "Ds", "E", "F", "Fs", "G", "Gs", "A",
+		"Bb", "B" };
+#define B pow(2.0, 1./12)
+static float frequency_ranges[10][12]; //frequency_ranges[octave:0-9][note:0-11]
+
+int previousNote;
+int previousCent;
+int previousFrequency = 0;
+char* previousFrequencyString;
+
+int note, cent;
+
+void update_octave_ranges(int freq) {
+	float a_0 = (float) freq / 16.0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 12; j++) {
+			float cur_freq = a_0 * pow(2, i) * pow(B, (float) j);
+			int new_j = j - 3;
+			int new_i = i + 1;
+			if (new_j < 0) {
+				new_j = new_j + 12;
+				new_i = new_i - 1;
+			}
+			frequency_ranges[new_i][new_j] = cur_freq;
+		}
+	}
+}
+
+void get_note(float frequency, int octave, int* note, int* cent) {
+	float octave_low_end = frequency_ranges[octave][0];
+	float octave_high_end = frequency_ranges[octave][11];
+	float note_low_end;
+	float note_high_end;
+	float cent_spacing;
+	if (frequency < octave_low_end || frequency > octave_high_end) {
+		*note = -1;
+		*cent = -1;
+	} else {
+		for (int i = 0; i < 11; i++) {
+
+			note_low_end = frequency_ranges[octave][i]; //checking if the frequency is between two notes
+			note_high_end = frequency_ranges[octave][i + 1];
+			if (frequency >= note_low_end && frequency < note_high_end) { //frequency is in range, check what its closer to.
+				float half_range = note_high_end - note_low_end;
+				float frequency_half = frequency - note_low_end;
+				float cent_check;
+				cent_spacing = half_range / 100.0;
+				for (int j = 0; j < 100; j++) {
+					cent_check = cent_spacing * j;
+					if (cent_check >= frequency_half) {
+						*cent = j;
+						break;
+					}
+				}
+				if (*cent <= 50) { //closer to lower end note
+					*note = i;
+				} else {
+					*note = i + 1;
+					*cent = (*cent) - 100;
+				}
+				break;
+			}
+		}
+	}
+}
+
+void drawOctave(int number) {
+	setColor(255, 0, 0);
+	if (number == 0) {
+		fillRect(7, 19, 22, 21);	// top segment
+		fillRect(7, 38, 22, 40);	// bottom segment
+		fillRect(7, 19, 9, 40);		// left segment
+		fillRect(20, 19, 22, 40);	// right segment
+	} else if (number == 1) {
+		fillRect(13, 19 + (29 * 1), 15, 40 + (29 * 1));	//	middle line
+	} else if (number == 2) {
+		fillRect(7, 19 + (29 * 2), 22, 19 + (29 * 2) + 2);// top horizontal line
+		fillRect(20, 19 + (29 * 2), 22, 19 + (29 * 2) + 10);// top/middle vertical
+		fillRect(7, 19 + (29 * 2) + 10, 22, 19 + (29 * 2) + 12);// middle horizontal
+		fillRect(7, 19 + (29 * 2) + 10, 9, 40 + (29 * 2));// middle/bottom vertical
+		fillRect(7, 40 + (29 * 2) - 2, 22, 40 + (29 * 2));	// bottom horizontal
+	} else if (number == 3) {
+		fillRect(7, 19 + (29 * 3), 22, 19 + (29 * 3) + 2);// top horizontal line
+		fillRect(20, 19 + (29 * 3), 22, 19 + (29 * 3) + 10);// top/middle vertical
+		fillRect(7, 19 + (29 * 3) + 10, 22, 19 + (29 * 3) + 12);// middle horizontal
+		fillRect(20, 19 + (29 * 3) + 10, 22, 40 + (29 * 3));// middle/bottom vertical
+		fillRect(7, 40 + (29 * 3) - 2, 22, 40 + (29 * 3));	// bottom horizontal
+	} else if (number == 4) {
+		fillRect(7, 19 + (29 * 4), 9, 19 + (29 * 4) + 10);// left vertical line
+		fillRect(7, 19 + (29 * 4) + 10, 22, 19 + (29 * 4) + 12);// middle horizontal
+		fillRect(20, 19 + (29 * 4), 22, 40 + (29 * 4));		// right vertical
+	} else if (number == 5) {
+		fillRect(7, 19 + (29 * 5), 22, 19 + (29 * 5) + 2);// top horizontal line
+		fillRect(7, 19 + (29 * 5), 9, 19 + (29 * 5) + 10);		// left vertical
+		fillRect(7, 19 + (29 * 5) + 10, 22, 19 + (29 * 5) + 12);// middle horizontal
+		fillRect(20, 19 + (29 * 5) + 10, 22, 40 + (29 * 5));// middle/bottom vertical
+		fillRect(7, 40 + (29 * 5) - 2, 22, 40 + (29 * 5));	// bottom horizontal
+	} else if (number == 6) {
+		fillRect(7, 19 + (29 * 6), 22, 19 + (29 * 6) + 2);// top horizontal line
+		fillRect(7, 19 + (29 * 6), 9, 40 + (29 * 6));			// left vertical
+		fillRect(7, 19 + (29 * 6) + 10, 22, 19 + (29 * 6) + 12);// middle horizontal
+		fillRect(20, 19 + (29 * 6) + 10, 22, 40 + (29 * 6));// middle/bottom vertical
+		fillRect(7, 40 + (29 * 6) - 2, 22, 40 + (29 * 6));	// bottom horizontal
+	} else if (number == 7) {
+		fillRect(7, 19 + (29 * 7), 22, 19 + (29 * 7) + 2);// top horizontal line
+		fillRect(20, 19 + (29 * 7), 22, 40 + (29 * 7));		// right vertical
+	} else if (number == 8) {
+		fillRect(7, 19 + (29 * 8), 22, 19 + (29 * 8) + 2);// top horizontal line
+		fillRect(7, 19 + (29 * 8), 9, 40 + (29 * 8));			// left vertical
+		fillRect(7, 19 + (29 * 8) + 10, 22, 19 + (29 * 8) + 12);// middle horizontal
+		fillRect(20, 19 + (29 * 8), 22, 40 + (29 * 8));		// right vertical
+		fillRect(7, 40 + (29 * 8) - 2, 22, 40 + (29 * 8));	// bottom horizontal
+	} else if (number == 9) {
+		fillRect(7, 19 + (29 * 9), 22, 19 + (29 * 9) + 2);// top horizontal line
+		fillRect(7, 19 + (29 * 9), 9, 19 + (29 * 9) + 10);		// left vertical
+		fillRect(7, 19 + (29 * 9) + 10, 22, 19 + (29 * 9) + 12);// middle horizontal
+		fillRect(20, 19 + (29 * 9), 22, 40 + (29 * 9));		// right vertical
+		fillRect(7, 40 + (29 * 9) - 2, 22, 40 + (29 * 9));	// bottom horizontal
+	}
+
+}
+void highlightOctave(int previousOctave, int newOctave) {
+	setColor(0, 0, 0);
+	fillRect(1, 16 + (29 * previousOctave), 28,
+			16 + (29 * previousOctave) + 28);
+	drawOctave(previousOctave);
+
+	setColor(255, 255, 255);
+	fillRect(1, 16 + (29 * newOctave), 28, 16 + (29 * newOctave) + 28);
+	drawOctave(newOctave);
+}
+
+//void tuneSelection(int previousTune, int newTune) {
+//	setColor(0, 0, 0);
+//	fillRect(55 + (previousTune % 420) * 4, 158, 55 + (previousTune % 420) * 4,
+//			187);
+//	fillRect(55 + (previousTune % 420) * 4, 191, 55 + (previousTune % 420) * 4,
+//			220);
+//
+//	setColor(255, 0, 0);
+//	fillRect(55 + (newTune % 420) * 4, 158, 55 + (newTune % 420) * 4, 187);
+//	fillRect(55 + (newTune % 420) * 4, 191, 55 + (newTune % 420) * 4, 220);
+//}
+void tunePrint() {
+	setColor(255, 0, 0);
+	setColorBg(0, 0, 0);
+	setFont(BigFont);
+
+	int length = snprintf( NULL, 0, "%d", tune);
+	char* str = malloc(length + 1);
+	snprintf(str, length + 1, "%d", tune);
+	lcdPrint(str, 90, 8);
+}
+
+void drawNote() {
+	// from y = 85 to y = 205 // 120 pixels
+	// from x = 85 to x = 185  // 100 pixels
+	// for one letter notes
+
+	// from y = 85 to y = 205	// 120 pixels
+	// from x = 45 to x = 225	// 180 pixels (85 pixels for each letter + 10 middle buffer)w
+	// for two letter notes
+
+	if (note == 0) {
+		// C
+		fillRect(85, 85, 185, 100);	// top horizontal
+		fillRect(85, 85, 100, 205);	// vertical
+		fillRect(85, 190, 185, 205);	// bottom horizontal
+	} else if (note == 1) {
+		// C#
+		fillRect(45, 85, 130, 100);	// C - top horizontal
+		fillRect(45, 85, 60, 205);	// C - vertical
+		fillRect(45, 190, 130, 205);	// C - bottom horizontal
+		fillRect(140, 117, 225, 132);	// # - top horizontal
+		fillRect(140, 157, 225, 172);	// # - bottom horizontal
+		fillRect(160, 85, 175, 205);	// # - left vertical
+		fillRect(188, 85, 203, 205);	// # - right vertical
+
+	} else if (note == 2) {
+		// D
+		fillRect(100, 85, 115, 205);	// left vertical
+		fillRect(85, 85, 160, 100);	// top horizontal
+		fillRect(85, 190, 160, 205);	// bottom horizontal
+		for (int i = 1; i < 10; i++) {
+			fillRect(145 + (i * 2), 85 + (i * 4), 160 + (i * 2), 100 + (i * 4));
+		}
+		fillRect(145 + (9 * 2), 85 + (9 * 4), 160 + (9 * 2), 170);
+		for (int i = 1; i < 10; i++) {
+			fillRect(145 + (i * 2), 205 - (i * 4), 160 + (i * 2),
+					190 - (i * 4));
+		}
+	} else if (note == 3) {
+		// D#
+		fillRect(45, 85, 112, 100);	// D - top horizontal
+		fillRect(45, 190, 112, 205);	// D - bottom horizontal
+		fillRect(60, 85, 75, 205);	// D - left vertical
+		for (int i = 1; i < 10; i++) {
+			fillRect(97 + (i * 2), 85 + (i * 4), 112 + (i * 2), 100 + (i * 4)); // upper arc
+		}
+		fillRect(97 + (9 * 2), 85 + (9 * 4), 112 + (9 * 2), 170); // middle vertical
+		for (int i = 1; i < 10; i++) {
+			fillRect(97 + (i * 2), 205 - (i * 4), 112 + (i * 2), 190 - (i * 4)); // lower arc
+		}
+		fillRect(140, 117, 225, 132);	// # - top horizontal
+		fillRect(140, 157, 225, 172);	// # - bottom horizontal
+		fillRect(160, 85, 175, 205);	// # - left vertical
+		fillRect(188, 85, 203, 205);	// # - right vertical
+	} else if (note == 4) {
+		// E
+		fillRect(85, 85, 185, 100);	// top horizontal
+		fillRect(85, 85, 100, 205);	// vertical
+		fillRect(85, 137, 165, 152);	// middle horizontal
+		fillRect(85, 190, 185, 205);	// bottom horizontal
+	} else if (note == 5) {
+		// F
+		fillRect(85, 85, 185, 100);	// top horizontal
+		fillRect(85, 85, 100, 205);	// vertical
+		fillRect(85, 137, 165, 152);	// middle horizontal
+	} else if (note == 6) {
+		// F#
+		fillRect(45, 85, 130, 100);		// F - top horizontal
+		fillRect(45, 85, 60, 205);		// F - vertical
+		fillRect(45, 137, 110, 152);	// F - middle horizontal
+		fillRect(140, 117, 225, 132);	// # - top horizontal
+		fillRect(140, 157, 225, 172);	// # - bottom horizontal
+		fillRect(160, 85, 175, 205);	// # - left vertical
+		fillRect(188, 85, 203, 205);	// # - right vertical
+	} else if (note == 7) {
+		// G
+		fillRect(85, 85, 185, 100);	// top horizontal
+		fillRect(85, 85, 100, 205);		// left vertical
+		fillRect(85, 190, 185, 205);	// bottom horizontal
+		fillRect(170, 137, 185, 205);	// right vertical
+		fillRect(135, 137, 185, 152);	// middle horizontal
+	} else if (note == 8) {
+		// G#
+		fillRect(45, 85, 130, 100);		// G - top horizontal
+		fillRect(45, 85, 60, 205);		// G - left vertical
+		fillRect(45, 190, 130, 205);	// G - bottom horizontal
+		fillRect(115, 137, 130, 205);	// G - right vertical
+		fillRect(85, 137, 130, 152);	// G - middle horizontal
+		fillRect(140, 117, 225, 132);	// # - top horizontal
+		fillRect(140, 157, 225, 172);	// # - bottom horizontal
+		fillRect(160, 85, 175, 205);	// # - left vertical
+		fillRect(188, 85, 203, 205);	// # - right vertical
+	} else if (note == 9) {
+		// A
+		fillRect(85, 85, 185, 100);	// top horizontal
+		fillRect(85, 85, 100, 205);		// left vertical
+		fillRect(170, 85, 185, 205);	// right vertical
+		fillRect(85, 137, 185, 152);	// middle horizontal
+	} else if (note == 10) {
+		// Bb
+		fillRect(45, 85, 130, 100);		// B - top horizontal
+		fillRect(45, 85, 60, 205);		// B - left vertical
+		fillRect(115, 85, 130, 205);	// B - right vertical
+		fillRect(45, 137, 130, 152);	// B - middle horizontal
+		fillRect(45, 190, 130, 205);	// B - bottom horizontal
+		fillRect(140, 85, 155, 205);	// b - left vertical
+		fillRect(140, 190, 225, 205);	// b - bottom horizontal
+		fillRect(210, 137, 225, 205);	// b - right vertical
+		fillRect(140, 137, 210, 152);	// b - middle horizontal
+	} else if (note == 11) {
+		// B
+		fillRect(85, 85, 185, 100);	// top horizontal
+		fillRect(85, 85, 100, 205);		// left vertical
+		fillRect(170, 85, 185, 205);	// right vertical
+		fillRect(85, 190, 185, 205);	// bottom horizontal
+		fillRect(85, 137, 185, 152);	// middle horizontal
+	}
+
+}
+
+void drawCentBars() {
+	if (cent >= -10 && cent <= 10) {
+		// +10
+		fillRect(85, 73, 185, 77);
+
+		// -10
+		fillRect(85, 213, 185, 217);
+	} else if (cent > 10 && cent <= 20) {
+		// +20
+		fillRect(75, 63, 195, 67);
+
+		// +10
+		fillRect(85, 73, 185, 77);
+	} else if (cent > 20 && cent <= 30) {
+		// +30
+		fillRect(65, 53, 205, 57);
+
+		// +20
+		fillRect(75, 63, 195, 67);
+
+		// +10
+		fillRect(85, 73, 185, 77);
+	} else if (cent > 30 && cent <= 40) {
+		// +40
+		fillRect(55, 43, 215, 47);
+
+		// +30
+		fillRect(65, 53, 205, 57);
+
+		// +20
+		fillRect(75, 63, 195, 67);
+
+		// +10
+		fillRect(85, 73, 185, 77);
+	} else if (cent > 40 && cent <= 50) {
+		// +50
+		fillRect(45, 33, 225, 37);// 5 pixels thick, middle pixel is 5 away from canvas border
+								  // 180 pixels apart
+		// +40
+		fillRect(55, 43, 215, 47);
+
+		// +30
+		fillRect(65, 53, 205, 57);
+
+		// +20
+		fillRect(75, 63, 195, 67);
+
+		// +10
+		fillRect(85, 73, 185, 77);
+	} else if (cent < -10 && cent >= -20) {
+		// -10
+		fillRect(85, 213, 185, 217);
+
+		// -20
+		fillRect(75, 223, 195, 227);
+	} else if (cent < -20 && cent >= -30) {
+		// -10
+		fillRect(85, 213, 185, 217);
+
+		// -20
+		fillRect(75, 223, 195, 227);
+
+		// -30
+		fillRect(65, 233, 205, 237);
+	} else if (cent < -30 && cent >= -40) {
+		// -10
+		fillRect(85, 213, 185, 217);
+
+		// -20
+		fillRect(75, 223, 195, 227);
+
+		// -30
+		fillRect(65, 233, 205, 237);
+
+		// -40
+		fillRect(55, 243, 215, 247);
+	} else if (cent < -40 && cent >= -50) {
+		// -10
+		fillRect(85, 213, 185, 217);
+
+		// -20
+		fillRect(75, 223, 195, 227);
+
+		// -30
+		fillRect(65, 233, 205, 237);
+
+		// -40
+		fillRect(55, 243, 215, 247);
+
+		// -50
+		fillRect(45, 253, 225, 257);
+	}
+}
+
+void bars() {
+	if (previousCent >= -10 && previousCent <= 10) {
+		setColor(0, 0, 0);
+		if (cent >= 11) {
+			//-10
+			fillRect(85, 213, 185, 217);
+		}
+		if (cent <= -11) {
+			// +10
+			fillRect(85, 73, 185, 77);
+		}
+
+		setColor(255, 0, 0);
+		if (cent >= 11) {
+			//+20
+			fillRect(75, 63, 195, 67);
+		}
+		if (cent >= 21) {
+			// +30
+			fillRect(65, 53, 205, 57);
+		}
+		if (cent >= 31) {
+			// +40
+			fillRect(55, 43, 215, 47);
+		}
+		if (cent >= 41) {
+			// +50
+			fillRect(45, 33, 225, 37);
+		}
+		if (cent <= -11) {
+			// -20
+			fillRect(75, 223, 195, 227);
+		}
+		if (cent <= -21) {
+			// -30
+			fillRect(65, 233, 205, 237);
+		}
+		if (cent <= -31) {
+			// -40
+			fillRect(55, 243, 215, 247);
+		}
+		if (cent <= -41) {
+			// -50
+			fillRect(45, 253, 225, 257);
+		}
+	} else if (previousCent >= 11 && previousCent <= 20) {
+		setColor(0, 0, 0);
+		if (cent <= 10) {
+			// +20
+			fillRect(75, 63, 195, 67);
+		}
+		if (cent <= -11) {
+			// +10
+			fillRect(85, 73, 185, 77);
+		}
+		setColor(255, 0, 0);
+		if (cent <= 10 && cent >= -10) {
+			//-10
+			fillRect(85, 213, 185, 217);
+		}
+
+		if (cent >= 21) {
+			// +30
+			fillRect(65, 53, 205, 57);
+		}
+		if (cent >= 31) {
+			// +40
+			fillRect(55, 43, 215, 47);
+		}
+		if (cent >= 41) {
+			// +50
+			fillRect(45, 33, 225, 37);
+		}
+		// negative
+		if (cent <= -11) {
+			// -20
+			fillRect(75, 223, 195, 227);
+		}
+		if (cent <= -21) {
+			// -30
+			fillRect(65, 233, 205, 237);
+		}
+		if (cent <= -31) {
+			// -40
+			fillRect(55, 243, 215, 247);
+		}
+		if (cent < -41) {
+			// -50
+			fillRect(45, 253, 225, 257);
+		}
+	} else if (previousCent >= 21 && previousCent <= 30) {
+		setColor(0, 0, 0);
+		if (cent <= 20) {
+			// +30
+			fillRect(65, 53, 205, 57);
+		}
+		if (cent <= 10) {
+			// +20
+			fillRect(75, 63, 195, 67);
+		}
+		if (cent <= -11) {
+			// +10
+			fillRect(85, 73, 185, 77);
+		}
+		setColor(255, 0, 0);
+
+		if (cent >= 31) {
+			// +40
+			fillRect(55, 43, 215, 47);
+		}
+		if (cent >= 41) {
+			// +50
+			fillRect(45, 33, 225, 37);
+		}
+		// negative
+		if (cent <= 10 && cent >= -10) {
+			//-10
+			fillRect(85, 213, 185, 217);
+		}
+		if (cent <= -11) {
+			// -20
+			fillRect(75, 223, 195, 227);
+		}
+		if (cent <= -21) {
+			// -30
+			fillRect(65, 233, 205, 237);
+		}
+		if (cent <= -31) {
+			// -40
+			fillRect(55, 243, 215, 247);
+		}
+		if (cent < -41) {
+			// -50
+			fillRect(45, 253, 225, 257);
+		}
+	} else if (previousCent >= 31 && previousCent <= 40) {
+		setColor(0, 0, 0);
+		if (cent <= 30) {
+			// +40
+			fillRect(55, 43, 215, 47);
+		}
+		if (cent <= 20) {
+			// +30
+			fillRect(65, 53, 205, 57);
+		}
+		if (cent <= 10) {
+			// +20
+			fillRect(75, 63, 195, 67);
+		}
+		if (cent <= -11) {
+			// +10
+			fillRect(85, 73, 185, 77);
+		}
+		setColor(255, 0, 0);
+
+		if (cent >= 41) {
+			// +50
+			fillRect(45, 33, 225, 37);
+		}
+		// negative
+		if (cent <= 10 && cent >= -10) {
+			//-10
+			fillRect(85, 213, 185, 217);
+		}
+		if (cent <= -11) {
+			// -20
+			fillRect(75, 223, 195, 227);
+		}
+		if (cent <= -21) {
+			// -30
+			fillRect(65, 233, 205, 237);
+		}
+		if (cent <= -31) {
+			// -40
+			fillRect(55, 243, 215, 247);
+		}
+		if (cent < -41) {
+			// -50
+			fillRect(45, 253, 225, 257);
+		}
+	} else if (previousCent >= 41 && previousCent <= 50) {
+		setColor(0, 0, 0);
+		if (cent <= 40) {
+			// +50
+			fillRect(45, 33, 225, 37);
+		}
+		if (cent <= 30) {
+			// +40
+			fillRect(55, 43, 215, 47);
+		}
+		if (cent <= 20) {
+			// +30
+			fillRect(65, 53, 205, 57);
+		}
+		if (cent <= 10) {
+			// +20
+			fillRect(75, 63, 195, 67);
+		}
+		if (cent <= -11) {
+			// +10
+			fillRect(85, 73, 185, 77);
+		}
+		setColor(255, 0, 0);
+
+		// negative
+		if (cent <= 10 && cent >= -10) {
+			//-10
+			fillRect(85, 213, 185, 217);
+		}
+		if (cent <= -11) {
+			// -20
+			fillRect(75, 223, 195, 227);
+		}
+		if (cent <= -21) {
+			// -30
+			fillRect(65, 233, 205, 237);
+		}
+		if (cent <= -31) {
+			// -40
+			fillRect(55, 243, 215, 247);
+		}
+		if (cent < -41) {
+			// -50
+			fillRect(45, 253, 225, 257);
+		}
+	} else if (previousCent <= -11 && previousCent >= -20) {
+		setColor(0, 0, 0);
+		if (cent >= -10) {
+			// -20
+			fillRect(75, 223, 195, 227);
+		}
+		if (cent >= 11) {
+			//-10
+			fillRect(85, 213, 185, 217);
+		}
+		setColor(255, 0, 0);
+		if (cent <= 10 && cent >= -10) {
+			// +10
+			fillRect(85, 73, 185, 77);
+		}
+
+		if (cent >= 21) {
+			// +30
+			fillRect(65, 53, 205, 57);
+		}
+		if (cent >= 31) {
+			// +40
+			fillRect(55, 43, 215, 47);
+		}
+		if (cent >= 41) {
+			// +50
+			fillRect(45, 33, 225, 37);
+		}
+		// negative
+		if (cent <= -11) {
+			// -20
+			fillRect(75, 223, 195, 227);
+		}
+		if (cent <= -21) {
+			// -30
+			fillRect(65, 233, 205, 237);
+		}
+		if (cent <= -31) {
+			// -40
+			fillRect(55, 243, 215, 247);
+		}
+		if (cent < -41) {
+			// -50
+			fillRect(45, 253, 225, 257);
+		}
+	}
+}
+
+Lab2A AO_Lab2A;
+
+void Lab2A_ctor(void) {
+	Lab2A *me = &AO_Lab2A;
+	QActive_ctor(&me->super, (QStateHandler )&Lab2A_initial);
+}
+
+QState Lab2A_initial(Lab2A *me) {
+//xil_printf("\n\rInitialization");
+	initLCD();
+	clrScr();
+	octave = 4;
+	tune = 440;
+	update_octave_ranges(tune);
+
+	return Q_TRAN(&Lab2A_on);
+}
+
+QState Lab2A_on(Lab2A *me) {
+//xil_printf("Lab2A_on state\n");
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("Lab2A_on-EntrySIG\n");
+
+		// Black background
+		setColor(0, 0, 0);
+		fillRect(0, 0, 239, 319);
+
+		// Octave Column
+		setColor(255, 0, 0);
+		fillRect(29, 15, 29, 304);		// right border
+		fillRect(0, 15, 0, 304);	// left border
+
+		// Octave Rows
+		for (int i = 0; i < 11; i++) {
+			if (i == 0) {
+				//fillRect(0, 30 + i * 29, 239, 30 + i * 29);
+			} else {
+				//fillRect(0, 30 + i * 29, 29, 30 + i * 29);
+			}
+		}
+
+		// 28 x 28 squares not counting columns/row outline
+		// Octave Numbers
+
+		setColor(255, 0, 0);
+
+		drawOctave(0);
+
+		drawOctave(1);
+
+		drawOctave(2);
+
+		drawOctave(3);
+
+		drawOctave(4);
+
+		drawOctave(5);
+
+		drawOctave(6);
+
+		drawOctave(7);
+
+		drawOctave(8);
+
+		drawOctave(9);
+
+		tunePrint();
+
+		highlightOctave(octave, octave);
+		drawOctave(octave);
+	}
+
+	case Q_INIT_SIG: {
+		xil_printf("Lab2A_on-InitSIG\n");
+		return Q_TRAN(&tuning);
+	}
+	}
+
+	return Q_SUPER(&QHsm_top);
+}
+
+/* Create Lab2A_on state and do any initialization code if needed */
+/******************************************************************/
+
+QState tuning(Lab2A *me) {
+//xil_printf("octaveSelection\n");
+
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("octaveSelection-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		//xil_printf("octaveSelection-ENCODER_UP\n");
+		int previousOctave = octave;
+		if (octave != 9) {
+			octave += 1;
+		}
+		if (previousOctave != octave) {
+			highlightOctave(previousOctave, octave);
+		}
+		return Q_HANDLED();
+	}
+
+	case ENCODER_DOWN: {
+		//xil_printf("octaveSelection-ENCODER_DOWN\n");
+		int previousOctave = octave;
+		if (octave != 0) {
+			octave -= 1;
+		}
+		if (previousOctave != octave) {
+			highlightOctave(previousOctave, octave);
+		}
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_CLICK: {
+		//xil_printf("octaveSelection-ENCODER_CLICK\n");
+
+		return Q_HANDLED();
+	}
+
+	case TIMEOUT: {
+		//xil_printf("octaveSelection-TIMEOUT\n");
+
+		return Q_HANDLED();
+	}
+	case TUNEUP: {
+		//xil_printf("octaveSelection-TUNEUP\n");
+
+		if (tune != 460) {
+			tune += 1;
+		}
+
+		tunePrint();
+		update_octave_ranges(tune);
+
+		return Q_HANDLED();
+	}
+	case TUNEDOWN: {
+		if (tune != 420) {
+			tune -= 1;
+		}
+
+		tunePrint();
+		update_octave_ranges(tune);
+
+		return Q_HANDLED();
+	}
+	case FREQUENCY: {
+//		setColor(0,0,0);
+//		fillRect(90, 300, 200, 320);
+
+		setColor(255, 0, 0);
+		setColorBg(0, 0, 0);
+		setFont(BigFont);
+		int length = snprintf( NULL, 0, "%d", (int) frequency);
+		char* str = malloc(length + 1);
+		snprintf(str, length + 1, "%d", (int) frequency);
+		lcdPrint(str, 90, 300);
+
+		if ((previousFrequency >= 0 && previousFrequency <= 9
+				&& (frequency >= 10 || frequency <= -1))
+				|| (previousFrequency >= 10 && previousFrequency <= 99
+						&& (frequency >= 100 || frequency <= 9))
+				|| (previousFrequency >= 100 && previousFrequency <= 999
+						&& (frequency >= 1000 || frequency <= 99))
+				|| (previousFrequency >= 1000 && previousFrequency <= 9999
+						&& (frequency >= 10000 || frequency <= 999))
+				|| (previousFrequency >= 10000 && previousFrequency <= 99999
+						&& (frequency >= 100000 || frequency <= 9999))) {
+			setColor(0, 0, 0);
+			fillRect(90, 300, 200, 320);
+		}
+		setColor(255, 0, 0);
+		lcdPrint(frequencyString, 90, 300);
+		previousFrequency = (int) frequency;
+
+		previousNote = note;
+		previousCent = cent;
+		get_note(frequency, octave, &note, &cent);
+
+		if (note == -1 && previousNote != -1) {
+			setColor(0, 0, 0);
+			fillRect(45, 85, 225, 205);
+			setColor(255, 0, 0);
+			lcdPrint("Out of range", 40, 140);
+
+		} else {
+			if (previousNote != note) {
+				setColor(0, 0, 0);
+				fillRect(40, 85, 235, 205);
+			}
+
+			setColor(255, 0, 0);
+			drawNote();
+		}
+
+		// 200 pixels  in x direction
+		// 230 pixels in y direction
+		// (not counting lines themselves)
+		fillRect(35, 29, 236, 29);		// Top border of canvas area
+		fillRect(35, 261, 236, 261);	// bottom border of canvas area
+
+		fillRect(35, 29, 35, 261);		// left border of canvas
+		fillRect(236, 29, 236, 261);	// right border of canvas
+
+		//xil_printf("note = %i\r\n", note);
+		if (previousCent == cent && cent != -1) {
+
+		} else if (previousCent != cent && cent != -1) {
+//			if ((previousCent >= -10 && previousCent <= 10
+//					&& (cent >= 10 || cent <= -11))
+//					|| (previousCent >= 11 && previousCent <= 20
+//							&& (cent >= 21 || cent <= 10))
+//					|| (previousCent >= 21 && previousCent <= 30
+//							&& (cent >= 31 || cent <= 20))
+//					|| (previousCent >= 31 && previousFrequency <= 40
+//							&& (cent >= 41 || cent <= 30))
+//					|| (previousCent >= 41 && previousCent <= 50
+//							&& (cent >= 51 || cent <= 40))
+//					// positive number ranges above
+//					// negative number range below
+//					|| (previousCent <= -11 && previousCent >= -20
+//							&& (cent <= -21 || cent >= -10))
+//					|| (previousCent <= -21 && previousCent >= -30
+//							&& (cent <= -31 || cent >= -20))
+//					|| (previousCent <= -31 && previousCent >= -40
+//							&& (cent <= -41 || cent >= -30))
+//					|| (previousCent <= -41 && previousCent >= -50
+//							&& (cent <= -51 || cent >= -40))) {
+//				setColor(0, 0, 0);
+//				fillRect(45, 33, 225, 77);		// positive bars
+//				fillRect(45, 257, 225, 213); 	// negative bars
+//
+//			}
+
+			setColor(255, 0, 0);
+			drawCentBars();
+			if ((previousCent >= 0 && previousCent <= 9
+					&& (cent >= 10 || cent <= -1))
+					|| (previousCent >= 10 && previousCent <= 99
+							&& (cent >= 100 || cent <= 9))
+					|| (previousCent >= 0 && cent <= -1)
+					|| (previousCent <= -1 && cent >= 0)) {
+
+				setColor(0, 0, 0);
+				fillRect(115, 270, 200, 290);
+				setColor(255, 0, 0);
+			}
+			lcdPrint(str, 115, 270);
+		}
+		if (previousCent == cent && cent == -1) {
+			setColor(0, 0, 0);
+			fillRect(45, 33, 225, 77);		// positive bars
+			fillRect(45, 257, 225, 213); 	// negative bars
+			fillRect(115, 270, 200, 290);
+		}
+		//xil_printf("cent = %i\r\n", cent);
+
+		return Q_HANDLED();
+	}
+
+	}
+
+	return Q_SUPER(&Lab2A_on);
+}

@@ -1,0 +1,76 @@
+/*
+ * variables.h
+ *
+ *  Created on: Dec 11, 2019
+ *      Author: eolmos
+ */
+
+#ifndef SRC_VARIABLES_H_
+#define SRC_VARIABLES_H_
+
+int SAMPLES;
+int M; //2^m=samples
+int DECIMATION_VAL;
+int DECIMATED_CLOCK;
+int DECIMATED_SAMPLES;
+
+
+if (previousCent >= -10 && previousCent <= 10) {
+				setColor(0, 0, 0);
+				if (cent >= 11) {
+					//-10
+					fillRect(85, 213, 185, 217);
+				}
+			} if (cent <= -11) {
+				// +10
+				fillRect(85, 73, 185, 77);
+			}
+				if (cent >= 11) {
+					 //+20
+					fillRect(75, 63, 195, 67);
+				}
+//				if (cent >= 21) {
+//					// +30
+//					fillRect(65, 53, 205, 57);
+//				}
+//				if (cent >= 31) {
+//					// +40
+//					fillRect(55, 43, 215, 47);
+//				}
+//				if (cent >= 41) {
+//					// +50
+//					fillRect(45, 33, 225, 37);
+//				}
+//				if (cent <= -11) {
+//					// -20
+//					fillRect(75, 223, 195, 227);
+//				}
+//				if (cent <= -21) {
+//					// -30
+//					fillRect(65, 233, 205, 237);
+//				}
+//				if (cent <= -31) {
+//					// -40
+//					fillRect(55, 243, 215, 247);
+//				}
+//				if (cent <= -41) {
+//					// -10
+//					fillRect(85, 213, 185, 217);
+//
+//					// -20
+//					fillRect(75, 223, 195, 227);
+//
+//					// -30
+//					fillRect(65, 233, 205, 237);
+//
+//					// -40
+//					fillRect(55, 243, 215, 247);
+//
+//					// -50
+//					fillRect(45, 253, 225, 257);
+//				}
+
+
+int DECIMATED_M;
+
+#endif /* SRC_VARIABLES_H_ */

@@ -1,0 +1,27 @@
+/*
+ * variables.h
+ *
+ *  Created on: Dec 11, 2019
+ *      Author: eolmos
+ */
+
+#ifndef SRC_VARIABLES_H_
+#define SRC_VARIABLES_H_
+
+int SAMPLES;
+int M; //2^m=samples
+int DECIMATION_VAL;
+int DECIMATED_CLOCK;
+int DECIMATED_SAMPLES;
+int DECIMATED_M;
+
+int int_buffer4096[4096/4];
+static float q4096[4096/4];
+static float w4096[4096/4];
+
+float sinValues4096[(4096/4)/2 + 2];
+float cosValues4096[(4096/4)/2 + 2];
+float new_4096[4096/4];
+float new_im4096[4096/4];
+
+#endif /* SRC_VARIABLES_H_ */

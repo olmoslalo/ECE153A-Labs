@@ -1,0 +1,2817 @@
+16:20:13 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: *** No rule to make target '../src/lscript.ld', needed by 'lab1.elf'.  Stop.
+16:22:38 **** Build of project lab1_bsp ****
+make -k all 
+Running Make include in microblaze_0/libsrc/tmrctr_v4_5/src
+make -C microblaze_0/libsrc/tmrctr_v4_5/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/standalone_v6_8/src
+make -C microblaze_0/libsrc/standalone_v6_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/sevenSeg_v1_0/src
+make -C microblaze_0/libsrc/sevenSeg_v1_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/cpu_v2_8/src
+make -C microblaze_0/libsrc/cpu_v2_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/intc_v3_8/src
+make -C microblaze_0/libsrc/intc_v3_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make libs in microblaze_0/libsrc/tmrctr_v4_5/src
+make -C microblaze_0/libsrc/tmrctr_v4_5/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling tmrctr
+mb-ar: creating ../../../lib/libxil.a
+Running Make libs in microblaze_0/libsrc/standalone_v6_8/src
+make -C microblaze_0/libsrc/standalone_v6_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling standalone
+microblaze_sleep.c:77:9: note: #pragma message: For the sleep routines, assembly instructions are used
+ #pragma message ("For the sleep routines, assembly instructions are used")
+         ^~~~~~~
+Running Make libs in microblaze_0/libsrc/sevenSeg_v1_0/src
+make -C microblaze_0/libsrc/sevenSeg_v1_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling sevenSeg...
+In file included from sevenSeg_selftest.c:3:0:
+sevenSeg_selftest.c: In function 'SEVENSEG_Reg_SelfTest':
+sevenSeg.h:46:4: warning: implicit declaration of function 'Xil_Out32' [-Wimplicit-function-declaration]
+    Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+    ^
+sevenSeg_selftest.c:50:4: note: in expansion of macro 'SEVENSEG_mWriteReg'
+    SEVENSEG_mWriteReg (baseaddr, write_loop_index*4, (write_loop_index+1)*READ_WRITE_MUL_FACTOR);
+    ^~~~~~~~~~~~~~~~~~
+sevenSeg.h:66:5: warning: implicit declaration of function 'Xil_In32' [-Wimplicit-function-declaration]
+     Xil_In32((BaseAddress) + (RegOffset))
+     ^
+sevenSeg_selftest.c:52:9: note: in expansion of macro 'SEVENSEG_mReadReg'
+    if ( SEVENSEG_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+         ^~~~~~~~~~~~~~~~~
+sevenSeg_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+Running Make libs in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling uartlite
+Running Make libs in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling bram
+Running Make libs in microblaze_0/libsrc/cpu_v2_8/src
+make -C microblaze_0/libsrc/cpu_v2_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling cpu
+Running Make libs in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling gpio
+Running Make libs in microblaze_0/libsrc/intc_v3_8/src
+make -C microblaze_0/libsrc/intc_v3_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling intc
+Finished building libraries
+
+**** Build of configuration Debug for project lab1 ****
+
+Nothing to build for project lab1
+16:23:05 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/extra.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/extra.c
+ 
+Building file: ../src/platform.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  11540	    372	   9376	  21288	   5328	lab1.elf
+Finished building: lab1.elf.size
+ 
+16:23:20 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+16:25:31 **** Clean-only build of configuration Debug for project lab1 ****
+make clean 
+rm -rf  ./src/extra.o ./src/platform.o ./src/timing.o  ./src/extra.d ./src/platform.d ./src/timing.d  lab1.elf.size  lab1.elf
+ 
+16:25:32 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/extra.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/extra.c
+ 
+Building file: ../src/platform.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  11540	    372	   9376	  21288	   5328	lab1.elf
+Finished building: lab1.elf.size
+ 
+16:25:34 **** Clean-only build of configuration Debug for project lab1 ****
+make clean 
+rm -rf  ./src/extra.o ./src/platform.o ./src/timing.o  ./src/extra.d ./src/platform.d ./src/timing.d  lab1.elf.size  lab1.elf
+ 
+16:25:34 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/extra.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/extra.c
+ 
+Building file: ../src/platform.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  11540	    372	   9376	  21288	   5328	lab1.elf
+Finished building: lab1.elf.size
+ 
+16:25:40 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+17:46:47 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+17:47:17 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+17:48:05 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+18:04:38 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/extra.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/extra.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  11540	    372	   9376	  21288	   5328	lab1.elf
+Finished building: lab1.elf.size
+ 
+18:06:12 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/extra.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/extra.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  11540	    372	   9376	  21288	   5328	lab1.elf
+Finished building: lab1.elf.size
+ 
+18:33:51 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  12212	    404	   9376	  21992	   55e8	lab1.elf
+Finished building: lab1.elf.size
+ 
+18:33:59 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+18:34:16 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+18:55:22 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  12212	    404	   9376	  21992	   55e8	lab1.elf
+Finished building: lab1.elf.size
+ 
+18:55:28 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+18:55:51 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  11588	    372	   9376	  21336	   5358	lab1.elf
+Finished building: lab1.elf.size
+ 
+18:55:53 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+18:56:39 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  11540	    372	   9376	  21288	   5328	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:02:52 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'printfFloat':
+../src/timing.c:103:17: error: 'xfloat' undeclared (first use in this function); did you mean 'xFloat'?
+  printf("%f\n", xfloat);
+                 ^~~~~~
+                 xFloat
+../src/timing.c:103:17: note: each undeclared identifier is reported only once for each function it appears in
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+19:04:09 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18148	   1412	   9440	  29000	   7148	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:04:21 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18148	   1412	   9440	  29000	   7148	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:07:41 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18212	   1412	   9440	  29064	   7188	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:07:42 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:08:51 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18148	   1412	   9440	  29000	   7148	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:09:33 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:14:33 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18264	   1412	   9436	  29112	   71b8	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:14:35 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:15:08 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18260	   1412	   9440	  29112	   71b8	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:15:10 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:15:27 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18264	   1412	   9436	  29112	   71b8	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:15:28 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:15:45 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18260	   1412	   9440	  29112	   71b8	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:15:47 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:16:10 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:16:18 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:17:48 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83168	   1544	   9448	  94160	  16fd0	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:17:50 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:23:11 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83168	   1544	   9448	  94160	  16fd0	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:24:21 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83168	   1544	   3488	  88200	  15888	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:24:22 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+19:27:24 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83168	   1544	   3848	  88560	  159f0	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:27:48 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83168	   1544	   7448	  92160	  16800	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:28:14 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83168	   1544	   9448	  94160	  16fd0	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:33:25 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83172	   1544	   9452	  94168	  16fd8	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:33:59 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18348	   1424	   9436	  29208	   7218	lab1.elf
+Finished building: lab1.elf.size
+ 
+19:35:11 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+20:03:38 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'printfFloat':
+../src/timing.c:115:17: error: 'xFloat' undeclared (first use in this function); did you mean 'xFloat2'?
+  printf("%f\n", xFloat);
+                 ^~~~~~
+                 xFloat2
+../src/timing.c:115:17: note: each undeclared identifier is reported only once for each function it appears in
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+20:03:47 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  19060	   1444	   9440	  29944	   74f8	lab1.elf
+Finished building: lab1.elf.size
+ 
+20:04:00 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+20:16:37 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  19060	   1444	4203776	4224280	 407518	lab1.elf
+Finished building: lab1.elf.size
+ 
+20:16:46 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+20:16:55 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+20:17:35 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18936	   1444	4203772	4224152	 407498	lab1.elf
+Finished building: lab1.elf.size
+ 
+20:17:38 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+20:37:10 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18344	   1412	4203772	4223528	 407228	lab1.elf
+Finished building: lab1.elf.size
+ 
+20:38:40 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18344	   1412	4203772	4223528	 407228	lab1.elf
+Finished building: lab1.elf.size
+ 
+20:40:47 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18264	   1412	4203772	4223448	 4071d8	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:18:54 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c:41:7: error: expected declaration specifiers or '...' before 'time'
+ srand(time(0));
+       ^~~~
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+21:20:15 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18264	   1412	4203772	4223448	 4071d8	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:20:26 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+21:21:47 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+21:22:05 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83172	   1544	4203788	4288504	 416ff8	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:22:29 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+21:27:49 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib/libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+makefile:36: recipe for target 'lab1.elf' failed
+collect2: error: ld returned 1 exit status
+make: *** [lab1.elf] Error 1
+21:27:59 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib/libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+collect2: error: ld returned 1 exit status
+make: *** [lab1.elf] Error 1
+makefile:36: recipe for target 'lab1.elf' failed
+21:28:36 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83968	   1544	4203784	4289296	 417310	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:28:37 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+21:29:23 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'readMemory':
+../src/timing.c:146:19: warning: implicit declaration of function 'random'; did you mean 'rindex'? [-Wimplicit-function-declaration]
+     Data = buffer[random() % (BUFFER_SIZE + 8)];
+                   ^~~~~~
+                   rindex
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  19344	   1412	4203772	4224528	 407610	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:30:09 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  19344	   1412	4203772	4224528	 407610	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:30:29 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  19408	   1412	4203772	4224592	 407650	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:30:57 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  19408	   1412	4203772	4224592	 407650	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:31:49 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  19344	   1412	4203772	4224528	 407610	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:33:09 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83172	   1544	4203788	4288504	 416ff8	lab1.elf
+Finished building: lab1.elf.size
+ 
+21:33:26 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+12:38:03 **** Build of project lab1_bsp ****
+make -k all 
+Running Make include in microblaze_0/libsrc/tmrctr_v4_5/src
+make -C microblaze_0/libsrc/tmrctr_v4_5/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/standalone_v6_8/src
+make -C microblaze_0/libsrc/standalone_v6_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/sevenSeg_v1_0/src
+make -C microblaze_0/libsrc/sevenSeg_v1_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/cpu_v2_8/src
+make -C microblaze_0/libsrc/cpu_v2_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/intc_v3_8/src
+make -C microblaze_0/libsrc/intc_v3_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make libs in microblaze_0/libsrc/tmrctr_v4_5/src
+make -C microblaze_0/libsrc/tmrctr_v4_5/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling tmrctr
+Running Make libs in microblaze_0/libsrc/standalone_v6_8/src
+make -C microblaze_0/libsrc/standalone_v6_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling standalone
+microblaze_sleep.c:77:9: note: #pragma message: For the sleep routines, assembly instructions are used
+ #pragma message ("For the sleep routines, assembly instructions are used")
+         ^~~~~~~
+Running Make libs in microblaze_0/libsrc/sevenSeg_v1_0/src
+make -C microblaze_0/libsrc/sevenSeg_v1_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling sevenSeg...
+In file included from sevenSeg_selftest.c:3:0:
+sevenSeg_selftest.c: In function 'SEVENSEG_Reg_SelfTest':
+sevenSeg.h:46:4: warning: implicit declaration of function 'Xil_Out32' [-Wimplicit-function-declaration]
+    Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+    ^
+sevenSeg_selftest.c:50:4: note: in expansion of macro 'SEVENSEG_mWriteReg'
+    SEVENSEG_mWriteReg (baseaddr, write_loop_index*4, (write_loop_index+1)*READ_WRITE_MUL_FACTOR);
+    ^~~~~~~~~~~~~~~~~~
+sevenSeg.h:66:5: warning: implicit declaration of function 'Xil_In32' [-Wimplicit-function-declaration]
+     Xil_In32((BaseAddress) + (RegOffset))
+     ^
+sevenSeg_selftest.c:52:9: note: in expansion of macro 'SEVENSEG_mReadReg'
+    if ( SEVENSEG_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+         ^~~~~~~~~~~~~~~~~
+sevenSeg_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+Running Make libs in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling uartlite
+Running Make libs in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling bram
+Running Make libs in microblaze_0/libsrc/cpu_v2_8/src
+make -C microblaze_0/libsrc/cpu_v2_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling cpu
+Running Make libs in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling gpio
+Running Make libs in microblaze_0/libsrc/intc_v3_8/src
+make -C microblaze_0/libsrc/intc_v3_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling intc
+Finished building libraries
+12:38:07 **** Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/extra.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/extra.c
+ 
+Building file: ../src/platform.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83172	   1544	   9452	  94168	  16fd8	lab1.elf
+Finished building: lab1.elf.size
+ 
+12:38:23 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+12:39:02 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+12:42:58 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83172	   1544	   9452	  94168	  16fd8	lab1.elf
+Finished building: lab1.elf.size
+ 
+12:46:03 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'xil_printfString':
+../src/timing.c:123:19: error: 'xil_printf_string_10' undeclared (first use in this function); did you mean 'xil_printfString'?
+  xil_printf("%s", xil_printf_string_10);
+                   ^~~~~~~~~~~~~~~~~~~~
+                   xil_printfString
+../src/timing.c:123:19: note: each undeclared identifier is reported only once for each function it appears in
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+12:47:30 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'xil_printfString':
+../src/timing.c:123:19: error: 'xil_printf_string_10' undeclared (first use in this function); did you mean 'xil_printfString'?
+  xil_printf("%s", xil_printf_string_10);
+                   ^~~~~~~~~~~~~~~~~~~~
+                   xil_printfString
+../src/timing.c:123:19: note: each undeclared identifier is reported only once for each function it appears in
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+12:50:44 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:100:4: error: too many arguments to function 'xil_printfString'
+    xil_printfString(string_10)
+    ^~~~~~~~~~~~~~~~
+../src/timing.c:30:6: note: declared here
+ void xil_printfString(void); // Write this function
+      ^~~~~~~~~~~~~~~~
+../src/timing.c:107:4: error: expected ';' before 'numClockCycles'
+    numClockCycles[i] = XTmrCtr_GetTimerCounterReg(XPAR_TMRCTR_0_BASEADDR, 1);
+    ^~~~~~~~~~~~~~
+../src/timing.c: In function 'xil_printfString':
+../src/timing.c:123:19: error: 'xil_printf_string_10' undeclared (first use in this function); did you mean 'xil_printfString'?
+  xil_printf("%s", xil_printf_string_10);
+                   ^~~~~~~~~~~~~~~~~~~~
+                   xil_printfString
+../src/timing.c:123:19: note: each undeclared identifier is reported only once for each function it appears in
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+12:50:51 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:100:4: error: too many arguments to function 'xil_printfString'
+    xil_printfString(string_10);
+    ^~~~~~~~~~~~~~~~
+../src/timing.c:30:6: note: declared here
+ void xil_printfString(void); // Write this function
+      ^~~~~~~~~~~~~~~~
+../src/timing.c: In function 'xil_printfString':
+../src/timing.c:123:19: error: 'xil_printf_string_10' undeclared (first use in this function); did you mean 'xil_printfString'?
+  xil_printf("%s", xil_printf_string_10);
+                   ^~~~~~~~~~~~~~~~~~~~
+                   xil_printfString
+../src/timing.c:123:19: note: each undeclared identifier is reported only once for each function it appears in
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+12:51:56 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:100:4: error: too many arguments to function 'xil_printfString'
+    xil_printfString(string_10);
+    ^~~~~~~~~~~~~~~~
+../src/timing.c:30:6: note: declared here
+ void xil_printfString(void); // Write this function
+      ^~~~~~~~~~~~~~~~
+../src/timing.c: In function 'xil_printfString':
+../src/timing.c:123:19: error: 'xil_printf_string_10' undeclared (first use in this function); did you mean 'xil_printfString'?
+  xil_printf("%s", xil_printf_string_10);
+                   ^~~~~~~~~~~~~~~~~~~~
+                   xil_printfString
+../src/timing.c:123:19: note: each undeclared identifier is reported only once for each function it appears in
+src/subdir.mk:27: recipe for target 'src/timing.o' failed
+make: *** [src/timing.o] Error 1
+12:52:38 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18348	   1424	   9436	  29208	   7218	lab1.elf
+Finished building: lab1.elf.size
+ 
+13:31:29 **** Build of project lab1_bsp ****
+make -k all 
+"Running Make include in microblaze_0/libsrc/bram_v4_2/src"
+make -C microblaze_0/libsrc/bram_v4_2/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/cpu_v2_8/src"
+make -C microblaze_0/libsrc/cpu_v2_8/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/gpio_v4_3/src"
+make -C microblaze_0/libsrc/gpio_v4_3/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/intc_v3_8/src"
+make -C microblaze_0/libsrc/intc_v3_8/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/sevenSeg_v1_0/src"
+make -C microblaze_0/libsrc/sevenSeg_v1_0/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/standalone_v6_8/src"
+make -C microblaze_0/libsrc/standalone_v6_8/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/tmrctr_v4_5/src"
+make -C microblaze_0/libsrc/tmrctr_v4_5/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make include in microblaze_0/libsrc/uartlite_v3_2/src"
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s include  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Running Make libs in microblaze_0/libsrc/bram_v4_2/src"
+make -C microblaze_0/libsrc/bram_v4_2/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling bram"
+"Running Make libs in microblaze_0/libsrc/cpu_v2_8/src"
+make -C microblaze_0/libsrc/cpu_v2_8/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling cpu"
+"Running Make libs in microblaze_0/libsrc/gpio_v4_3/src"
+make -C microblaze_0/libsrc/gpio_v4_3/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling gpio"
+"Running Make libs in microblaze_0/libsrc/intc_v3_8/src"
+make -C microblaze_0/libsrc/intc_v3_8/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling intc"
+"Running Make libs in microblaze_0/libsrc/sevenSeg_v1_0/src"
+make -C microblaze_0/libsrc/sevenSeg_v1_0/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling sevenSeg..."
+In file included from sevenSeg_selftest.c:3:0:
+sevenSeg_selftest.c: In function 'SEVENSEG_Reg_SelfTest':
+sevenSeg.h:46:4: warning: implicit declaration of function 'Xil_Out32' [-Wimplicit-function-declaration]
+    Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+    ^
+sevenSeg_selftest.c:50:4: note: in expansion of macro 'SEVENSEG_mWriteReg'
+    SEVENSEG_mWriteReg (baseaddr, write_loop_index*4, (write_loop_index+1)*READ_WRITE_MUL_FACTOR);
+    ^~~~~~~~~~~~~~~~~~
+sevenSeg.h:66:5: warning: implicit declaration of function 'Xil_In32' [-Wimplicit-function-declaration]
+     Xil_In32((BaseAddress) + (RegOffset))
+     ^
+sevenSeg_selftest.c:52:9: note: in expansion of macro 'SEVENSEG_mReadReg'
+    if ( SEVENSEG_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+         ^~~~~~~~~~~~~~~~~
+sevenSeg_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in microblaze_0/libsrc/standalone_v6_8/src"
+make -C microblaze_0/libsrc/standalone_v6_8/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling standalone";
+microblaze_sleep.c:77:9: note: #pragma message: For the sleep routines, assembly instructions are used
+ #pragma message ("For the sleep routines, assembly instructions are used")
+         ^~~~~~~
+"Running Make libs in microblaze_0/libsrc/tmrctr_v4_5/src"
+make -C microblaze_0/libsrc/tmrctr_v4_5/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling tmrctr"
+"Running Make libs in microblaze_0/libsrc/uartlite_v3_2/src"
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s libs  "SHELL=CMD" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+"Compiling uartlite"
+'Finished building libraries'
+13:31:54 **** Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/extra.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+'Finished building: ../src/extra.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  18348	   1424	   9436	  29208	   7218	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+13:35:08 **** Clean-only build of configuration Debug for project lab1 ****
+make clean 
+rm -rf  ./src/extra.o ./src/platform.o ./src/timing.o  ./src/extra.d ./src/platform.d ./src/timing.d  lab1.elf.size  lab1.elf
+' '
+13:35:08 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/extra.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/extra.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/extra.d" -MT"src/extra.o" -o "src/extra.o" "../src/extra.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/extra.c:1:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+'Finished building: ../src/extra.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  83172	   1544	   9452	  94168	  16fd8	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+13:36:34 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+13:45:01 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84408	   1544	   9448	  95400	  174a8	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+13:45:08 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+13:59:51 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84408	   1544	   9448	  95400	  174a8	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:00:12 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84376	   1552	   9448	  95376	  17490	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:00:15 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:11:10 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:126:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:134:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84376	   1552	   9448	  95376	  17490	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:11:36 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:126:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:134:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84292	   1540	   9456	  95288	  17438	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:11:38 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:11:50 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:12:45 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:101:4: warning: implicit declaration of function 'doAddInt' [-Wimplicit-function-declaration]
+    doAddInt();
+    ^~~~~~~~
+../src/timing.c: At top level:
+../src/timing.c:129:6: warning: conflicting types for 'doAddInt'
+ void doAddInt(){
+      ^~~~~~~~
+../src/timing.c:101:4: note: previous implicit declaration of 'doAddInt' was here
+    doAddInt();
+    ^~~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84364	   1548	   9456	  95368	  17488	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:12:49 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:19:46 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:103:4: warning: implicit declaration of function 'doMultiplyInt' [-Wimplicit-function-declaration]
+    doMultiplyInt();
+    ^~~~~~~~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: At top level:
+../src/timing.c:133:6: warning: conflicting types for 'doMultiplyInt'
+ void doMultiplyInt(){
+      ^~~~~~~~~~~~~
+../src/timing.c:103:4: note: previous implicit declaration of 'doMultiplyInt' was here
+    doMultiplyInt();
+    ^~~~~~~~~~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84364	   1548	   9456	  95368	  17488	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:19:49 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:21:12 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:102:4: warning: implicit declaration of function 'doAddFloat' [-Wimplicit-function-declaration]
+    doAddFloat();
+    ^~~~~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: At top level:
+../src/timing.c:137:6: warning: conflicting types for 'doAddFloat'
+ void doAddFloat(){
+      ^~~~~~~~~~
+../src/timing.c:102:4: note: previous implicit declaration of 'doAddFloat' was here
+    doAddFloat();
+    ^~~~~~~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  85132	   1548	   9456	  96136	  17788	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:21:14 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:22:13 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:104:4: warning: implicit declaration of function 'doMultiplyFloat' [-Wimplicit-function-declaration]
+    doMultiplyFloat();
+    ^~~~~~~~~~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: At top level:
+../src/timing.c:141:6: warning: conflicting types for 'doMultiplyFloat'
+ void doMultiplyFloat(){
+      ^~~~~~~~~~~~~~~
+../src/timing.c:104:4: note: previous implicit declaration of 'doMultiplyFloat' was here
+    doMultiplyFloat();
+    ^~~~~~~~~~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84972	   1548	   9456	  95976	  176e8	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:22:15 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:23:09 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84964	   1572	   9456	  95992	  176f8	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:23:19 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:24:00 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84612	   1540	   9456	  95608	  17578	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:24:04 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:24:15 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:24:42 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:130:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:138:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84964	   1572	   9456	  95992	  176f8	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:24:55 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:30:02 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c:18:21: error: "1024" may not appear in macro parameter list
+ #define BUFFER_SIZE(1024*1024)
+                     ^~~~
+../src/timing.c:50:12: error: 'BUFFER_SIZE' undeclared here (not in a function); did you mean 'BUFSIZ'?
+ int buffer[BUFFER_SIZE + 8];
+            ^~~~~~~~~~~
+            BUFSIZ
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:133:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:137:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:141:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:145:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+make: *** [src/subdir.mk:29: src/timing.o] Error 1
+14:30:36 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:133:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:137:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:141:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:145:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84964	   1572	4203792	4290328	 417718	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:31:06 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:133:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:137:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:141:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:145:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84964	   1572	4203792	4290328	 417718	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:32:00 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'main':
+../src/timing.c:87:11: warning: implicit declaration of function 'time' [-Wimplicit-function-declaration]
+     srand(time(0));
+           ^~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:133:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:137:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:141:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:145:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:38: lab1.elf] Error 1
+14:32:13 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:138:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:146:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:38: lab1.elf] Error 1
+14:32:25 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:138:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:146:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:38: lab1.elf] Error 1
+14:33:17 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:138:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:146:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:38: lab1.elf] Error 1
+14:34:52 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:138:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:146:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:38: lab1.elf] Error 1
+14:35:04 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../../lab1_bsp/microblaze_0/lib\libc.a(lib_a-gettimeofdayr.o): In function `_gettimeofday_r':
+(.text+0x2c): undefined reference to `gettimeofday'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:38: lab1.elf] Error 1
+14:35:23 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:134:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:138:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:142:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:146:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  85088	   1540	4203788	4290416	 417770	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:35:27 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:35:52 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:36:10 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:36:30 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+14:39:55 **** Auto Build of configuration Debug for project lab1 ****
+make all 
+'Building file: ../src/timing.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:137:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:141:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:145:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:149:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+'Finished building: ../src/timing.c'
+' '
+'Building target: lab1.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: lab1.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  85136	   1540	4203788	4290464	 4177a0	lab1.elf
+'Finished building: lab1.elf.size'
+' '
+14:39:58 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+15:57:16 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+Building file: ../src/timing.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/timing.o" -I../../lab1_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/timing.d" -MT"src/timing.o" -o "src/timing.o" "../src/timing.c"
+In file included from ../src/extra.h:7:0,
+                 from ../src/timing.c:13:
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+../src/timing.c: In function 'doAddInt':
+../src/timing.c:137:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 + xInt2;
+      ^~~~~
+../src/timing.c: In function 'doMultiplyInt':
+../src/timing.c:141:6: warning: unused variable 'xInt3' [-Wunused-variable]
+  int xInt3 = xInt1 * xInt2;
+      ^~~~~
+../src/timing.c: In function 'doAddFloat':
+../src/timing.c:145:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 + xFloat2;
+        ^~~~~~~
+../src/timing.c: In function 'doMultiplyFloat':
+../src/timing.c:149:8: warning: unused variable 'xFloat3' [-Wunused-variable]
+  float xFloat3 = xFloat1 * xFloat2;
+        ^~~~~~~
+Finished building: ../src/timing.c
+ 
+Building target: lab1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1.elf"  ./src/extra.o ./src/platform.o ./src/timing.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1.elf  |tee "lab1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84292	   1540	4203792	4289624	 417458	lab1.elf
+Finished building: lab1.elf.size
+ 
+15:57:50 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.
+15:58:01 **** Incremental Build of configuration Debug for project lab1 ****
+make all 
+make: Nothing to be done for 'all'.

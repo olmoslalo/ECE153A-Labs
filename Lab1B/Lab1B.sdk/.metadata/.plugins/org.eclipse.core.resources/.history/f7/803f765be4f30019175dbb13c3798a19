@@ -1,0 +1,251 @@
+#include <stdio.h>			// Used for printf()
+#include <stdlib.h>
+#include "xparameters.h"	// Contains hardware addresses and bit masks
+#include "xil_cache.h"		// Cache Drivers
+#include "xintc.h"			// Interrupt Drivers
+
+#include "xintc_l.h"
+
+#include "xtmrctr.h"		// Timer Drivers
+#include "xtmrctr_l.h" 		// Low-level timer drivers
+#include "xil_printf.h" 	// Used for xil_printf()
+#include "xgpio.h" 			// Used for General purpose
+#include "sevenSeg_new.h"
+
+#include "mb_interface.h"
+#include <xbasic_types.h>
+#include <xio.h>
+#include "xgpio_l.h"
+#include "sleep.h"
+
+Xuint32 dataRead = 0;
+XIntc intc;
+XTmrCtr timer0;
+XGpio pushButtons;
+
+Xuint32 idle = 1;
+
+int seg7 = 0;
+int seg6 = 0;
+int seg5 = 0;
+int seg4 = 0;
+int seg3 = 0;
+int seg2 = 0;
+int seg1 = 0;
+int seg0 = 0;
+
+void timer0Handler() {
+	seg0 += 1;
+	XTmrCtr_Reset(&timer0, 0);
+}
+
+void pushButtonsHandler() {
+
+	// debouncing
+	XIntc_Disable(&intc, XPAR_AXI_GPIO_BTN_DEVICE_ID);
+
+	// Read the state of the push buttons
+	dataRead = XGpio_DiscreteRead(&pushButtons, 1);
+	xil_printf("Pressed %i\n", dataRead);
+
+	// debounce delay
+	usleep(300);
+
+	XGpio_InterruptClear(&pushButtons, XGPIO_IR_CH1_MASK);
+	XIntc_Enable(&intc, XPAR_AXI_GPIO_BTN_DEVICE_ID);
+}
+
+int main() {
+
+	Xil_ICacheEnable();
+	Xil_DCacheEnable();
+	print("---Entering main---\n\r");
+
+	XStatus status;
+
+	//
+	// Initialization
+	//
+
+	// intc
+	status = XIntc_Initialize(&intc, XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing intc\n");
+		return XST_FAILURE;
+	}
+
+	// timer0
+	status = XTmrCtr_Initialize(&timer0, XPAR_AXI_TIMER_0_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing timer0\n");
+		return XST_FAILURE;
+	}
+
+	// resetGPIO
+	status = XGpio_Initialize(&pushButtons, XPAR_AXI_GPIO_BTN_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&pushButtons, 1, 0x0000001F);
+
+	//
+	// Connect interrupt handlers
+	//
+
+	// timer0Handler
+	status = XIntc_Connect(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_TIMER_0_INTERRUPT_INTR,
+			(XInterruptHandler) timer0Handler, &timer0);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error connecting timerHandler\n");
+		return XST_FAILURE;
+	}
+
+	// pushButtonHandler
+	status = XIntc_Connect(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_GPIO_BTN_IP2INTC_IRPT_INTR,
+			(Xil_ExceptionHandler) pushButtonsHandler, &pushButtons);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error connecting resetHandler\n");
+		return XST_FAILURE;
+	}
+
+	//
+	// Starts the interrupt controller
+	//
+
+	status = XIntc_Start(&intc, XIN_REAL_MODE);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error starting intc\n");
+		return XST_FAILURE;
+	}
+
+	//
+	// Enable the interrupt sources
+	//
+
+	// pushButtons
+	XIntc_Enable(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_GPIO_BTN_IP2INTC_IRPT_INTR);
+
+
+	//
+	// Options
+	//
+
+	// timer0
+	XTmrCtr_SetOptions(&timer0, 0,
+	XTC_INT_MODE_OPTION | XTC_DOWN_COUNT_OPTION);
+	XTmrCtr_SetResetValue(&timer0, 0, 0x0000000%);	// counting down from 100000000 / 10000 = 10000 (100 microsecond)
+
+	//
+	// Enable interrupts on MicroBlaze
+	//
+	microblaze_enable_interrupts();
+
+	//
+	// Enable the GPIO channel interrupts so that push button can be
+	// detected and enable interrupts for the GPIO device
+	//
+
+	XGpio_InterruptEnable(&pushButtons, XGPIO_IR_CH1_MASK);
+	XGpio_InterruptGlobalEnable(&pushButtons);
+
+
+	while (1) {
+
+		if (idle == 1) {
+			// start pushed when idle
+			if (dataRead == 16) {
+				seg7 = 0;
+				seg6 = 0;
+				seg5 = 0;
+				seg4 = 0;
+				seg3 = 0;
+				seg2 = 0;
+				seg1 = 0;
+				seg0 = 0;
+				idle = 0;
+				XTmrCtr_Reset(&timer0, 0);
+				XIntc_Enable(&intc,
+				XPAR_MICROBLAZE_0_AXI_INTC_AXI_TIMER_0_INTERRUPT_INTR);
+				XTmrCtr_Start(&timer0, 0);
+			}
+		} else {
+			// start pushed when running
+			// or
+			// Stop pressed when running
+			if ((dataRead == 16) || (dataRead == 8)) {
+				XIntc_Disable(&intc,
+				XPAR_MICROBLAZE_0_AXI_INTC_AXI_TIMER_0_INTERRUPT_INTR);
+				idle = 1;
+			}
+		}
+		// Reset pressed
+		if (dataRead == 2) {
+			XIntc_Disable(&intc,
+			XPAR_MICROBLAZE_0_AXI_INTC_AXI_TIMER_0_INTERRUPT_INTR);
+			seg7 = 0;
+			seg6 = 0;
+			seg5 = 0;
+			seg4 = 0;
+			seg3 = 0;
+			seg2 = 0;
+			seg1 = 0;
+			seg0 = 0;
+			idle = 1;
+
+		}
+		dataRead = 0;
+
+		sevenseg_draw_digit(0, seg0);
+		sevenseg_draw_digit(1, seg1);
+		sevenseg_draw_digit(2, seg2);
+		sevenseg_draw_digit(3, seg3);
+		sevenseg_draw_digit(4, seg4);
+		sevenseg_draw_digit(5, seg5);
+		sevenseg_draw_digit(6, seg6);
+		sevenseg_draw_digit(7, seg7);
+
+		if(seg0 == 10){
+			seg1 += 1;
+			seg0 = 0;
+		}
+		if(seg1 == 10){
+			seg2 += 1;
+			seg1 = 0;
+		}
+		if (seg2 == 10) {
+			seg3 += 1;
+			seg2 = 0;
+		}
+		if (seg3 == 10) {
+			seg4 += 1;
+			seg3 = 0;
+		}
+		if (seg4 == 10) {
+			seg5 += 1;
+			seg4 = 0;
+		}
+		if (seg5 == 10) {
+			seg6 += 1;
+			seg5 = 0;
+		}
+		if (seg6 == 10) {
+			seg7 += 1;
+			seg6 = 0;
+		}
+		if (seg7 == 10) {
+			seg7 = 0;
+			seg0 = 0;
+		}
+
+	}
+
+	print("---Exiting main---\n\r");
+
+	Xil_DCacheDisable();
+	Xil_ICacheDisable();
+	return XST_SUCCESS;
+}

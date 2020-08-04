@@ -1,0 +1,13 @@
+/*
+ * variables.h
+ *
+ *  Created on: Dec 11, 2019
+ *      Author: eolmos
+ */
+
+#ifndef SRC_VARIABLES_H_
+#define SRC_VARIABLES_H_
+
+int SAMPLES;
+
+#endif /* SRC_VARIABLES_H_ */

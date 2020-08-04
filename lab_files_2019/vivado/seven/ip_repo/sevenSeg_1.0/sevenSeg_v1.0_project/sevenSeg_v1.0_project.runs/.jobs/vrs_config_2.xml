@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="synth_1" LaunchDir="/usr9/research/chsegal/Documents/ECE153A/Artix7/seven/ip_repo/sevenSeg_1.0/sevenSeg_v1.0_project/sevenSeg_v1.0_project.runs/synth_1" FlowId="Vivado Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+</Runs>
+

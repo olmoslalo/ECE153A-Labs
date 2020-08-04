@@ -1,0 +1,28 @@
+12:36:03 **** Incremental Build of configuration Debug for project rotaryEncoder ****
+make all 
+Building file: ../src/rotaryEncoder.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/rotaryEncoder.o" -I../../rotaryEncoder_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/rotaryEncoder.d" -MT"src/rotaryEncoder.o" -o "src/rotaryEncoder.o" "../src/rotaryEncoder.c"
+In file included from ../src/rotaryEncoder.c:13:0:
+../../rotaryEncoder_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../rotaryEncoder_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/rotaryEncoder.c
+ 
+Building target: rotaryEncoder.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../rotaryEncoder_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "rotaryEncoder.elf"  ./src/rotaryEncoder.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: rotaryEncoder.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size rotaryEncoder.elf  |tee "rotaryEncoder.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  14676	    536	   2388	  17600	   44c0	rotaryEncoder.elf
+Finished building: rotaryEncoder.elf.size
+ 
+
+12:36:04 Build Finished (took 688ms)
+

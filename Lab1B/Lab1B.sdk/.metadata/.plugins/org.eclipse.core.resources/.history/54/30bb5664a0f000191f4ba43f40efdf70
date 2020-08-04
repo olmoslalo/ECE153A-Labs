@@ -1,0 +1,222 @@
+#include <stdio.h>			// Used for printf()
+#include <stdlib.h>
+#include "xparameters.h"	// Contains hardware addresses and bit masks
+#include "xil_cache.h"		// Cache Drivers
+#include "xintc.h"			// Interrupt Drivers
+
+#include "xintc_l.h"
+
+#include "xtmrctr.h"		// Timer Drivers
+#include "xtmrctr_l.h" 		// Low-level timer drivers
+#include "xil_printf.h" 	// Used for xil_printf()
+#include "xgpio.h" 			// Used for General purpose
+#include "sevenSeg_new.h"
+
+#include "mb_interface.h"
+#include <xbasic_types.h>
+#include <xio.h>
+u32 dataRead = 0;
+void timerHandler() {
+	xil_printf("timer\n");
+}
+
+void resetHandler() {
+	xil_printf("pressed\n");
+}
+
+int main() {
+
+	Xil_ICacheEnable();
+	Xil_DCacheEnable();
+
+	print("---Entering main---\n\r");
+
+	XIntc intc;
+	XTmrCtr timer0;
+	Xuint32 data;
+
+	XStatus status;
+
+	status = XIntc_Initialize(&intc, XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		if (status == XST_DEVICE_NOT_FOUND)
+			xil_printf("XST_DEVICE_NOT_FOUND...\r\n");
+		else
+			xil_printf("a different error from XST_DEVICE_NOT_FOUND...\r\n");
+		xil_printf(
+				"Interrupt controller driver failed to be initialized...\r\n");
+		return XST_FAILURE;
+	}
+	xil_printf("Interrupt controller driver initialized!\r\n");
+
+	/*
+	 * Connect the application handler that will be called when an interrupt
+	 * for the timer occurs
+	 */
+	status = XIntc_Connect(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_TIMER_0_INTERRUPT_INTR,
+			(XInterruptHandler) timerHandler, &timer0);
+	if (status != XST_SUCCESS) {
+		xil_printf(
+				"Failed to connect the application handlers to the interrupt controller...\r\n");
+		return XST_FAILURE;
+	}
+	xil_printf("Connected to Interrupt Controller!\r\n");
+
+	/*
+	 * Start the interrupt controller such that interrupts are enabled for
+	 * all devices that cause interrupts.
+	 */
+	status = XIntc_Start(&intc, XIN_REAL_MODE);
+	if (status != XST_SUCCESS) {
+		xil_printf("Interrupt controller driver failed to start...\r\n");
+		return XST_FAILURE;
+	}
+	xil_printf("Started Interrupt Controller!\r\n");
+
+	/*
+	 * Enable the interrupt for the timer counter
+	 */
+	XIntc_Enable(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_TIMER_0_INTERRUPT_INTR);
+
+	/*
+	 * Initialize the timer counter so that it's ready to use,
+	 * specify the device ID that is generated in xparameters.h
+	 */
+	status = XTmrCtr_Initialize(&timer0,
+	XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Timer initialization failed...\r\n");
+		return XST_FAILURE;
+	}
+	xil_printf("Initialized Timer!\r\n");
+
+	/*
+	 * Enable the interrupt of the timer counter so interrupts will occur
+	 * and use auto reload mode such that the timer counter will reload
+	 * itself automatically and continue repeatedly, without this option
+	 * it would expire once only
+	 */
+	XTmrCtr_SetOptions(&timer0, 0,
+	XTC_INT_MODE_OPTION | XTC_AUTO_RELOAD_OPTION);
+
+	/*
+	 * Set a reset value for the timer counter such that it will expire
+	 * earlier than letting it roll over from 0, the reset value is loaded
+	 * into the timer counter when it is started
+	 */
+	XTmrCtr_SetResetValue(&timer0, 0, 0x17D7840); // 0x17D7840 = 25*10^6 clk cycles @ 50MHz = 500ms
+
+	/*
+	 * Start the timer counter such that it's incrementing by default,
+	 * then wait for it to timeout a number of times
+	 */
+	XTmrCtr_Start(&timer0, 0);
+
+	int timer0Value = XTmrCtr_GetValue(&timer0, 0);
+	printf("timer0Value = %i\n", timer0Value);
+
+	/*
+	 * Register the intc device driver’s handler with the Standalone
+	 * software platform’s interrupt table
+	 */
+	microblaze_register_handler(
+			(XInterruptHandler) XIntc_DeviceInterruptHandler,
+			(void*) XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID);
+
+	/*
+	 * Enable interrupts on MicroBlaze
+	 */
+	microblaze_enable_interrupts();
+	xil_printf("Interrupts enabled!\r\n");
+
+	// LED output GPIO example
+	//
+	volatile int Delay;
+	u32 LedBit;
+	u32 LedLoop;
+
+	XGpio ledGPIO;
+	/*
+	 * Initialize the GPIO driver so that it's ready to use,
+	 * specify the device ID that is generated in xparameters.h
+	 */
+	status = XGpio_Initialize(&ledGPIO, XPAR_AXI_GPIO_LED_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/* Set the direction for all signals to be outputs */
+	XGpio_SetDataDirection(&ledGPIO, 1, 0x0);
+
+	/* Set the GPIO outputs to low */
+	XGpio_DiscreteWrite(&ledGPIO, 1, 0x0);
+
+	for (LedBit = 0x0; LedBit < 16; LedBit++)
+	{
+		for (LedLoop = 0; LedLoop < 0x1; LedLoop++)
+		{
+			/* Set the GPIO Output to High */
+			XGpio_DiscreteWrite(&ledGPIO, 1, 1 << LedBit);
+		}
+	}
+
+	// GPIO Input example
+	/*
+	 * Initialize the GPIO driver so that it's ready to use,
+	 * specify the device ID that is generated in xparameters.h
+	 */
+
+	XGpio resetGPIO;
+	status = XGpio_Initialize(&resetGPIO, XPAR_AXI_GPIO_BTN_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	/* Hook up interrupt service routine */
+	XIntc_Connect(&intc, 2, (Xil_ExceptionHandler) resetHandler,
+	XPAR_AXI_GPIO_BTN_DEVICE_ID);
+
+	/* Enable the interrupt vector at the interrupt controller */
+	XIntc_Enable(&intc, 2);
+
+	/*
+	 * Enable the GPIO channel interrupts so that push button can be
+	 * detected and enable interrupts for the GPIO device
+	 */
+	XGpio_InterruptEnable(&resetGPIO, 1);
+	XGpio_InterruptGlobalEnable(&resetGPIO);
+
+	/*
+	 * Initialize the exception table and register the interrupt
+	 * controller handler with the exception table
+	 */
+	Xil_ExceptionInit();
+
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
+			(Xil_ExceptionHandler) XIntc_InterruptHandler, &intc);
+
+	/* Enable non-critical exceptions */
+	Xil_ExceptionEnable();
+
+	int IntrFlag = 0;
+	int delay = 0;
+
+	while (!IntrFlag && (delay < 0x00FFFFFF)) {
+		delay++;
+	}
+
+	XGpio_InterruptDisable(&resetGPIO, 1 );
+	dataRead = IntrFlag;
+	print(" Press button to Generate Interrupt\r\n");
+	while (1) {
+		sevenseg_draw_digit(7, 4);
+	}
+
+	print("---Exiting main---\n\r");
+
+	Xil_DCacheDisable();
+	Xil_ICacheDisable();
+	return XST_SUCCESS;
+}

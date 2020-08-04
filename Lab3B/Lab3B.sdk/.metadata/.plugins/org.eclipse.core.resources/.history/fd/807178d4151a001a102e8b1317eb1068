@@ -1,0 +1,248 @@
+/*****************************************************************************
+ * lab2a.c for Lab2A of ECE 153a at UCSB
+ * Date of the Last Update:  October 23,2014
+ *****************************************************************************/
+
+#define AO_LAB2A
+
+#include "qpn_port.h"
+#include "bsp.h"
+#include "lab2a.h"
+#include "lcd.h"
+
+typedef struct Lab2ATag {               //Lab2A State machine
+	QActive super;
+} Lab2A;
+
+/* Setup state machines */
+/**********************************************************************/
+static QState Lab2A_initial(Lab2A *me);
+static QState Lab2A_on(Lab2A *me);
+static QState tuning(Lab2A *me);
+
+/**********************************************************************/
+void drawOctave(int number) {
+	setColor(255, 0, 0);
+	if (number == 0) {
+		fillRect(7, 34, 22, 36);	// top segment
+		fillRect(7, 53, 22, 55);	// bottom segment
+		fillRect(7, 34, 9, 55);		// left segment
+		fillRect(20, 34, 22, 55);	// right segment
+	} else if (number == 1) {
+		fillRect(13, 34 + (29 * 1), 15, 55 + (29 * 1));	//	middle line
+	} else if (number == 2) {
+		fillRect(7, 34 + (29 * 2), 22, 34 + (29 * 2) + 2);// top horizontal line
+		fillRect(20, 34 + (29 * 2), 22, 34 + (29 * 2) + 10);// top/middle vertical
+		fillRect(7, 34 + (29 * 2) + 10, 22, 34 + (29 * 2) + 12);// middle horizontal
+		fillRect(7, 34 + (29 * 2) + 10, 9, 55 + (29 * 2));// middle/bottom vertical
+		fillRect(7, 55 + (29 * 2) - 2, 22, 55 + (29 * 2));	// bottom horizontal
+	} else if (number == 3) {
+		fillRect(7, 34 + (29 * 3), 22, 34 + (29 * 3) + 2);// top horizontal line
+		fillRect(20, 34 + (29 * 3), 22, 34 + (29 * 3) + 10);// top/middle vertical
+		fillRect(7, 34 + (29 * 3) + 10, 22, 34 + (29 * 3) + 12);// middle horizontal
+		fillRect(20, 34 + (29 * 3) + 10, 22, 55 + (29 * 3));// middle/bottom vertical
+		fillRect(7, 55 + (29 * 3) - 2, 22, 55 + (29 * 3));	// bottom horizontal
+	} else if (number == 4) {
+		fillRect(7, 34 + (29 * 4), 9, 34 + (29 * 4) + 10);// left vertical line
+		fillRect(7, 34 + (29 * 4) + 10, 22, 34 + (29 * 4) + 12);// middle horizontal
+		fillRect(20, 34 + (29 * 4), 22, 55 + (29 * 4));		// right vertical
+	} else if (number == 5) {
+		fillRect(7, 34 + (29 * 5), 22, 34 + (29 * 5) + 2);// top horizontal line
+		fillRect(7, 34 + (29 * 5), 9, 34 + (29 * 5) + 10);		// left vertical
+		fillRect(7, 34 + (29 * 5) + 10, 22, 34 + (29 * 5) + 12);// middle horizontal
+		fillRect(20, 34 + (29 * 5) + 10, 22, 55 + (29 * 5));// middle/bottom vertical
+		fillRect(7, 55 + (29 * 5) - 2, 22, 55 + (29 * 5));	// bottom horizontal
+	} else if (number == 6) {
+		fillRect(7, 34 + (29 * 6), 22, 34 + (29 * 6) + 2);// top horizontal line
+		fillRect(7, 34 + (29 * 6), 9, 55 + (29 * 6));			// left vertical
+		fillRect(7, 34 + (29 * 6) + 10, 22, 34 + (29 * 6) + 12);// middle horizontal
+		fillRect(20, 34 + (29 * 6) + 10, 22, 55 + (29 * 6));// middle/bottom vertical
+		fillRect(7, 55 + (29 * 6) - 2, 22, 55 + (29 * 6));	// bottom horizontal
+	} else if (number == 7) {
+		fillRect(7, 34 + (29 * 7), 22, 34 + (29 * 7) + 2);// top horizontal line
+		fillRect(20, 34 + (29 * 7), 22, 55 + (29 * 7));		// right vertical
+	} else if (number == 8) {
+		fillRect(7, 34 + (29 * 8), 22, 34 + (29 * 8) + 2);// top horizontal line
+		fillRect(7, 34 + (29 * 8), 9, 55 + (29 * 8));			// left vertical
+		fillRect(7, 34 + (29 * 8) + 10, 22, 34 + (29 * 8) + 12);// middle horizontal
+		fillRect(20, 34 + (29 * 8), 22, 55 + (29 * 8));		// right vertical
+		fillRect(7, 55 + (29 * 8) - 2, 22, 55 + (29 * 8));	// bottom horizontal
+	} else if (number == 9) {
+		fillRect(7, 34 + (29 * 9), 22, 34 + (29 * 9) + 2);// top horizontal line
+		fillRect(7, 34 + (29 * 9), 9, 34 + (29 * 9) + 10);		// left vertical
+		fillRect(7, 34 + (29 * 9) + 10, 22, 34 + (29 * 9) + 12);// middle horizontal
+		fillRect(20, 34 + (29 * 9), 22, 55 + (29 * 9));		// right vertical
+		fillRect(7, 55 + (29 * 9) - 2, 22, 55 + (29 * 9));	// bottom horizontal
+	}
+
+}
+void highlightOctave(int previousOctave, int newOctave) {
+	setColor(0, 0, 0);
+	fillRect(1, 31 + (29 * previousOctave), 28,
+			31 + (29 * previousOctave) + 28);
+	drawOctave(previousOctave);
+
+	setColor(255, 255, 255);
+	fillRect(1, 31 + (29 * newOctave), 28, 31 + (29 * newOctave) + 28);
+	drawOctave(newOctave);
+}
+
+void tuneSelection(int previousTune, int newTune) {
+	setColor(0, 0, 0);
+	fillRect(55 + (previousTune % 420) * 4, 158, 55 + (previousTune % 420) * 4,
+			187);
+	fillRect(55 + (previousTune % 420) * 4, 191, 55 + (previousTune % 420) * 4,
+			220);
+
+	setColor(255, 0, 0);
+	fillRect(55 + (newTune % 420) * 4, 158, 55 + (newTune % 420) * 4, 187);
+	fillRect(55 + (newTune % 420) * 4, 191, 55 + (newTune % 420) * 4, 220);
+}
+
+Lab2A AO_Lab2A;
+
+void Lab2A_ctor(void) {
+	Lab2A *me = &AO_Lab2A;
+	QActive_ctor(&me->super, (QStateHandler )&Lab2A_initial);
+}
+
+QState Lab2A_initial(Lab2A *me) {
+	//xil_printf("\n\rInitialization");
+	initLCD();
+	clrScr();
+	octave = 0;
+	tune = 440;
+	return Q_TRAN(&Lab2A_on);
+}
+
+QState Lab2A_on(Lab2A *me) {
+	//xil_printf("Lab2A_on state\n");
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("Lab2A_on-EntrySIG\n");
+
+		// Black background
+		setColor(0, 0, 0);
+		fillRect(0, 0, 239, 319);
+
+		// Octave Column
+		setColor(255, 0, 0);
+		fillRect(29, 30, 29, 319);		// right border
+		fillRect(0, 30, 0, 319);	// left border
+
+		// Octave Rows
+		for (int i = 0; i < 11; i++) {
+			if (i == 0) {
+				fillRect(0, 30 + i * 29, 239, 30 + i * 29);
+			} else {
+				//fillRect(0, 30 + i * 29, 29, 30 + i * 29);
+			}
+		}
+
+		// octave 0 selected
+		setColor(255, 255, 255);
+		fillRect(1, 31, 28, 31 + 28);
+
+		// 28 x 28 squares not counting columns/row outline
+		// Octave Numbers
+
+		setColor(255, 0, 0);
+
+		drawOctave(0);
+
+		drawOctave(1);
+
+		drawOctave(2);
+
+		drawOctave(3);
+
+		drawOctave(4);
+
+		drawOctave(5);
+
+		drawOctave(6);
+
+		drawOctave(7);
+
+		drawOctave(8);
+
+		drawOctave(9);
+
+	}
+
+	case Q_INIT_SIG: {
+		xil_printf("Lab2A_on-InitSIG\n");
+		return Q_TRAN(&tuning);
+	}
+	}
+
+	return Q_SUPER(&QHsm_top);
+}
+
+/* Create Lab2A_on state and do any initialization code if needed */
+/******************************************************************/
+
+QState tuning(Lab2A *me) {
+	//xil_printf("octaveSelection\n");
+
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("octaveSelection-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		//xil_printf("octaveSelection-ENCODER_UP\n");
+		int previousOctave = octave;
+		if (octave != 9) {
+			octave += 1;
+		}
+		if (previousOctave != octave) {
+			highlightOctave(previousOctave, octave);
+		}
+		return Q_HANDLED();
+	}
+
+	case ENCODER_DOWN: {
+		//xil_printf("octaveSelection-ENCODER_DOWN\n");
+		int previousOctave = octave;
+		if (octave != 0) {
+			octave -= 1;
+		}
+		if (previousOctave != octave) {
+			highlightOctave(previousOctave, octave);
+		}
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_CLICK: {
+		//xil_printf("octaveSelection-ENCODER_CLICK\n");
+
+		return Q_HANDLED();
+	}
+
+	case TIMEOUT: {
+		//xil_printf("octaveSelection-TIMEOUT\n");
+
+		return Q_HANDLED();
+	}
+	case TUNEUP: {
+		//xil_printf("octaveSelection-TUNEUP\n");
+
+		if (tune != 460) {
+			tune += 1;
+		}
+
+		setColor(255, 0, 0);
+		setColorBg(0, 0, 0);
+		setFont(BigFont);
+
+		tunePrint();
+		return Q_HANDLED();
+	}
+	}
+
+	return Q_SUPER(&Lab2A_on);
+}

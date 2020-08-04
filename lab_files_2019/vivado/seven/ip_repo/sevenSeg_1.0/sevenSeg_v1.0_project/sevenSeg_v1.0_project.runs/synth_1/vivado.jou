@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2014.1 (64-bit)
+# SW Build 881834 on Fri Apr  4 13:56:21 MDT 2014
+# IP Build 877625 on Fri Mar 28 16:29:15 MDT 2014
+# Start of session at: Thu Jul 17 14:34:09 2014
+# Process ID: 28705
+# Log file: /usr9/research/chsegal/Documents/ECE153A/Artix7/seven/ip_repo/sevenSeg_1.0/sevenSeg_v1.0_project/sevenSeg_v1.0_project.runs/synth_1/sevenSeg_v1_0.vds
+# Journal file: /usr9/research/chsegal/Documents/ECE153A/Artix7/seven/ip_repo/sevenSeg_1.0/sevenSeg_v1.0_project/sevenSeg_v1.0_project.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source sevenSeg_v1_0.tcl

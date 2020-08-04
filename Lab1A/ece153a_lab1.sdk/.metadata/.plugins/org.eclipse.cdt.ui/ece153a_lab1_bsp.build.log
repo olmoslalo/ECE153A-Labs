@@ -1,0 +1,9 @@
+15:10:12 **** Build of project ece153a_lab1_bsp ****
+make -k all 
+Cannot run program "make": Unknown reason
+
+Error: Program "make" not found in PATH
+PATH=[/tools/Xilinx/SDK/2018.3/gnu/microblaze/lin/bin:/tools/Xilinx/SDK/2018.3/gnu/microblaze/linux_toolchain/lin64_le/bin:/tools/Xilinx/SDK/2018.3/gnu/microblaze/linux_toolchain/lin64_be/bin:/tools/Xilinx/SDK/2018.3/gnu/arm/lin/bin:/tools/Xilinx/SDK/2018.3/gnu/aarch64/lin/aarch64-none/bin:/tools/Xilinx/SDK/2018.3/gnu/aarch64/lin/aarch64-linux/bin:/tools/Xilinx/SDK/2018.3/gnu/armr5/lin/gcc-arm-none-eabi/bin:/tools/Xilinx/SDK/2018.3/gnu/aarch32/lin/gcc-arm-none-eabi/bin:/tools/Xilinx/SDK/2018.3/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:/tools/Xilinx/SDK/2018.3/tps/lnx64/cmake-3.3.2/bin::/tools/Xilinx/SDK/2018.3/bin:/tools/Xilinx/SDK/2018.3/tps/lnx64/jre/bin:/tools/Xilinx/Vivado/2018.3/ids_lite/ISE/bin/lin64:/tools/Xilinx/Vivado/2018.3/bin:/tools/Xilinx/Vivado/2018.3/tps/lnx64/jre9.0.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin]
+
+15:10:13 Build Finished (took 160ms)
+

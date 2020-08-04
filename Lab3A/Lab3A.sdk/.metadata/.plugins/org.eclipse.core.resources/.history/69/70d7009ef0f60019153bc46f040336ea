@@ -1,0 +1,95 @@
+#include <stdio.h>			// Used for printf()
+#include <stdlib.h>
+#include "xparameters.h"	// Contains hardware addresses and bit masks
+#include "xil_cache.h"		// Cache Drivers
+#include "xintc.h"			// Interrupt Drivers
+#include "xintc_l.h"
+#include "xtmrctr.h"		// Timer Drivers
+#include "xtmrctr_l.h" 		// Low-level timer drivers
+#include "xil_printf.h" 	// Used for xil_printf()
+#include "xgpio.h" 			// Used for General purpose
+#include "xgpio_l.h"
+#include "mb_interface.h"
+#include <xbasic_types.h>
+#include <xio.h>
+
+#include "sleep.h"
+
+Xuint32 dataRead = 0;
+XIntc intc;
+XTmrCtr timer0;
+XGpio rgbleds;
+
+int main() {
+
+	//Xil_ICacheEnable();
+	//Xil_DCacheEnable();
+
+	xil_printf("---Entering main---\n\r");
+
+	XStatus status;
+
+	//
+	// Initialization
+	//
+
+	// intc
+	status = XIntc_Initialize(&intc, XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing intc\n");
+		return XST_FAILURE;
+	}
+
+	// timer0
+	status = XTmrCtr_Initialize(&timer0, XPAR_AXI_TIMER_0_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing timer0\n");
+		return XST_FAILURE;
+	}
+
+	// rgbleds
+	status = XGpio_Initialize(&rgbleds, XPAR_AXI_GPIO_RGBLEDS_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&rgbleds, 1, 0x00000000);
+
+	//
+	// Starts the interrupt controller
+	//
+
+	status = XIntc_Start(&intc, XIN_REAL_MODE);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error starting intc\n");
+		return XST_FAILURE;
+	}
+
+	//
+	// Options
+	//
+
+	// timer0
+	XTmrCtr_SetOptions(&timer0, 0,
+	XTC_INT_MODE_OPTION | XTC_DOWN_COUNT_OPTION);
+	XTmrCtr_SetResetValue(&timer0, 0, 0x000002710);	// counting down from 100000000 / 10000 = 10000 (100 microsecond)
+
+	//
+	// Enable interrupts on MicroBlaze
+	//
+
+	microblaze_enable_interrupts();
+
+	while(1)
+	{
+		 /* Set the GPIO outputs to low */
+			// 0x0001 = blue
+			// 0x0010 = green
+			// 0x0100 = red
+			 XGpio_DiscreteWrite(&rgbleds, 1, 0x111);
+
+
+	}
+
+	return 0;
+}

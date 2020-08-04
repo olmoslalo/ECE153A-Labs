@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;lab1B/src/stopwatch&apos; to &apos;stopwatch.c&apos;" description="Rename resource &apos;stopwatch&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/stopwatch" name="stopwatch.c" stamp="1571183030644" updateReferences="true"/>
+</session>

@@ -1,0 +1,178 @@
+#include <stdio.h>			// Used for printf()
+#include <stdlib.h>
+#include "xparameters.h"	// Contains hardware addresses and bit masks
+#include "xil_cache.h"		// Cache Drivers
+#include "xintc.h"			// Interrupt Drivers
+#include "xintc_l.h"
+#include "xtmrctr.h"		// Timer Drivers
+#include "xtmrctr_l.h" 		// Low-level timer drivers
+#include "xil_printf.h" 	// Used for xil_printf()
+#include "xgpio.h" 			// Used for General purpose
+#include "xgpio_l.h"
+#include "mb_interface.h"
+#include <xbasic_types.h>
+#include <xio.h>
+
+#include "sleep.h"
+
+Xuint32 rEncoderOutputA = 1;
+Xuint32 rEncoderOutputB = 1;
+XIntc intc;
+
+XTmrCtr timer0;
+
+XGpio rgbleds;
+XGpio leds;
+XGpio rEncoder;
+
+
+
+void timer0Handler() {
+
+}
+
+void rEncoderHandler() {
+
+	// Read the state of the push buttons
+	rEncoderOutputA = XGpio_DiscreteRead(&pushButtons, 1);
+
+	// debounce delay
+	usleep(300);
+
+	XGpio_InterruptClear(&pushButtons, XGPIO_IR_CH1_MASK);
+	XIntc_Enable(&intc, XPAR_AXI_GPIO_BTN_DEVICE_ID);
+	xil_printf()
+}
+
+int main() {
+
+	//Xil_ICacheEnable();
+	//Xil_DCacheEnable();
+
+	xil_printf("---Entering main---\n\r");
+
+	XStatus status;
+
+	//
+	// Initialization
+	//
+
+	// intc
+	status = XIntc_Initialize(&intc, XPAR_MICROBLAZE_0_AXI_INTC_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing intc\n");
+		return XST_FAILURE;
+	}
+
+	// timer0
+	status = XTmrCtr_Initialize(&timer0, XPAR_AXI_TIMER_0_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing timer0\n");
+		return XST_FAILURE;
+	}
+
+	// rgbleds
+	status = XGpio_Initialize(&rgbleds, XPAR_AXI_GPIO_RGBLEDS_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&rgbleds, 1, 0x00000000);
+
+	// 16 leds
+	status = XGpio_Initialize(&leds, XPAR_AXI_GPIO_LED_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&rgbleds, 1, 0x00000000);
+
+	// rEncoder
+	status = XGpio_Initialize(&rEncoder, XPAR_AXI_GPIO_ENCODER_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error initializing resetGPIO\n");
+		return XST_FAILURE;
+	}
+	XGpio_SetDataDirection(&rEncoder, 1, 0x00000003);
+
+	//
+	// Connect interrupt handlers
+	//
+
+	// timer0Handler
+	status = XIntc_Connect(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_TIMER_0_INTERRUPT_INTR,
+			(XInterruptHandler) timer0Handler, &timer0);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error connecting timerHandler\n");
+		return XST_FAILURE;
+	}
+
+	// rEncoderHandler
+	status = XIntc_Connect(&intc,
+	XPAR_MICROBLAZE_0_AXI_INTC_AXI_GPIO_ENCODER_IP2INTC_IRPT_INTR,
+			(XInterruptHandler) rEncoderHandler, &rEncoder);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error connecting timerHandler\n");
+		return XST_FAILURE;
+	}
+
+	//
+	// Starts the interrupt controller
+	//
+
+	status = XIntc_Start(&intc, XIN_REAL_MODE);
+	if (status != XST_SUCCESS) {
+		xil_printf("Error starting intc\n");
+		return XST_FAILURE;
+	}
+
+	//
+	// Options
+	//
+
+	// timer0
+	XTmrCtr_SetOptions(&timer0, 0,
+	XTC_INT_MODE_OPTION | XTC_DOWN_COUNT_OPTION);
+	XTmrCtr_SetResetValue(&timer0, 0, 0x000002710);	// counting down from 100000000 / 10000 = 10000 (100 microsecond)
+
+	//
+	// Enable interrupts on MicroBlaze
+	//
+
+	microblaze_enable_interrupts();
+
+	while (1) {
+		// 0b000001 = blue 	right rgbled
+		// 0b000010 = green right rgbled
+		// 0b000100 = red 	right rgbled
+
+		// 0b001000 = blue 	left rgbled
+		// 0b010000 = green left rgbled
+		// 0b100000 = red 	left rgbled
+
+		XGpio_DiscreteWrite(&rgbleds, 1, 0b00010);
+		for (int i = 0; i < 10000000; i++) {
+
+		}
+		XGpio_DiscreteWrite(&rgbleds, 1, 0b00000);
+
+		for (int LedBit = 0x0; LedBit < 16; LedBit++) {
+
+			for (int LedLoop = 0; LedLoop < 1; LedLoop++) {
+				/* Set the GPIO Output to High */
+				XGpio_DiscreteWrite(&leds, 1, 1 << LedBit);
+				/* Wait a small amount of time so the LED is visible */
+				for (int Delay = 0; Delay < 1000000; Delay++)
+					;
+
+				/* Clear the GPIO Output */
+				XGpio_DiscreteClear(&leds, 1, 1 << LedBit);
+
+			}
+		}
+
+	}
+
+	return XST_SUCCESS;
+}

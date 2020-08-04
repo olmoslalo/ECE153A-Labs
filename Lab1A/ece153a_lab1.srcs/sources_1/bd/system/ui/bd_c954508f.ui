@@ -1,0 +1,67 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port DDR2 -pg 1 -y -200 -defaultsOSRD
+preplace port btnCpuReset -pg 1 -y -170 -defaultsOSRD
+preplace port clock_rtl -pg 1 -y -130 -defaultsOSRD
+preplace portBus an -pg 1 -y -780 -defaultsOSRD
+preplace portBus btn -pg 1 -y -780 -defaultsOSRD
+preplace portBus led -pg 1 -y -650 -defaultsOSRD
+preplace portBus seg -pg 1 -y -800 -defaultsOSRD
+preplace inst rst_mig_7series_0_100M -pg 1 -lvl 6 -y -320 -defaultsOSRD
+preplace inst mig_7series_0 -pg 1 -lvl 3 -y -120 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 7 -y -320 -defaultsOSRD
+preplace inst axi_gpio_btn -pg 1 -lvl 3 -y -650 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 4 -y -160 -defaultsOSRD
+preplace inst axi_gpio_led -pg 1 -lvl 2 -y -660 -defaultsOSRD
+preplace inst axi_timer_0 -pg 1 -lvl 1 -y -380 -defaultsOSRD
+preplace inst microblaze_0_xlconcat -pg 1 -lvl 6 -y -60 -defaultsOSRD
+preplace inst axi_timer_1 -pg 1 -lvl 2 -y -490 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 5 -y -90 -defaultsOSRD
+preplace inst microblaze_0_axi_intc -pg 1 -lvl 7 -y -100 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 2 -y -240 -defaultsOSRD
+preplace inst sevenSeg_0 -pg 1 -lvl 3 -y -790 -defaultsOSRD
+preplace inst microblaze_0_local_memory -pg 1 -lvl 3 -y -290 -defaultsOSRD
+preplace netloc mig_7series_0_mmcm_locked 1 3 3 1520J 130 1920J -230 2340
+preplace netloc microblaze_0_axi_periph_M04_AXI 1 1 4 570 -360 1130J -390 1570J -400 1890
+preplace netloc microblaze_0_mdm_axi 1 4 1 1940
+preplace netloc mig_7series_0_DDR2 1 3 5 1540 80 1930 -210 N -210 N -210 3030
+preplace netloc sevenSeg_0_an 1 3 5 NJ -780 NJ -780 NJ -780 NJ -780 NJ
+preplace netloc microblaze_0_intr 1 6 1 2750J
+preplace netloc mig_7series_0_ui_addn_clk_0 1 2 2 1210 -10 1500
+preplace netloc axi_gpio_btn_ip2intc_irpt 1 3 3 NJ -630 NJ -630 2320
+preplace netloc gpio_io_i_0_1 1 0 4 NJ -780 NJ -780 1130J -560 1530
+preplace netloc microblaze_0_Clk 1 0 7 0 -510 540 -740 1140 -420 1530 150 1960 -180 2330 -180 2740
+preplace netloc microblaze_0_axi_periph_M06_AXI 1 2 3 1180 90 NJ 90 1890
+preplace netloc microblaze_0_axi_periph_M03_AXI 1 1 4 580 -370 1100J -400 1560J -410 1900
+preplace netloc axi_smc_M00_AXI 1 2 6 1210 -480 NJ -480 NJ -480 NJ -480 NJ -480 3030
+preplace netloc microblaze_0_intc_axi 1 4 3 NJ -220 NJ -220 2730
+preplace netloc microblaze_0_interrupt 1 1 7 550J 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 3030
+preplace netloc axi_gpio_led_gpio_io_o 1 2 6 1120J -570 1550J -650 NJ -650 NJ -650 NJ -650 NJ
+preplace netloc microblaze_0_M_AXI_DC 1 2 5 1120J -460 NJ -460 NJ -460 NJ -460 2750
+preplace netloc microblaze_0_ilmb_1 1 2 1 1170
+preplace netloc sevenSeg_0_seg 1 3 5 NJ -800 NJ -800 NJ -800 NJ -800 NJ
+preplace netloc mdm_1_Interrupt 1 5 1 N
+preplace netloc microblaze_0_axi_periph_M05_AXI 1 2 3 1190 100 NJ 100 1900
+preplace netloc microblaze_0_axi_dp 1 2 2 1160J -380 1570
+preplace netloc rst_mig_7series_0_100M_peripheral_aresetn 1 0 7 10 -500 560 -340 1110 0 1510 140 1970 -170 NJ -170 2750
+preplace netloc rst_mig_7series_0_100M_bus_struct_reset 1 2 5 1200 170 NJ 170 NJ 170 NJ 170 2710
+preplace netloc sys_clk_i_0_1 1 0 3 N -130 N -130 1080
+preplace netloc microblaze_0_M_AXI_IC 1 2 5 1150J -440 NJ -440 NJ -440 NJ -440 2740
+preplace netloc rst_mig_7series_0_100M_mb_reset 1 1 6 570J 160 NJ 160 NJ 160 1950J -190 NJ -190 2720
+preplace netloc mig_7series_0_ui_clk_sync_rst 1 3 3 1550J -430 NJ -430 2290
+preplace netloc sys_rst_0_1 1 0 3 N -170 540 -140 N
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 0 5 20J -490 550J -380 1080J -410 1540J -420 1910
+preplace netloc microblaze_0_dlmb_1 1 2 1 1100
+preplace netloc microblaze_0_debug 1 1 5 580J 110 NJ 110 NJ 110 NJ 110 2280
+preplace netloc axi_timer_1_interrupt 1 2 4 1080J -470 NJ -470 NJ -470 2310
+preplace netloc mdm_1_debug_sys_rst 1 5 1 2290
+preplace netloc axi_timer_0_interrupt 1 1 5 NJ -350 1090J -450 NJ -450 NJ -450 2300
+levelinfo -pg 1 -20 410 840 1360 1740 2130 2530 2890 3050 -top -870 -bot 240
+"
+}
+{
+   "da_axi4_cnt":"7",
+   "da_mb_cnt":"1"
+}

@@ -1,0 +1,33 @@
+22:15:55 **** Auto Build of configuration Debug for project lab1B ****
+make all 
+Building file: ../src/sevenSeg_new.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/sevenSeg_new.o" -I../../lab1B_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/sevenSeg_new.d" -MT"src/sevenSeg_new.o" -o "src/sevenSeg_new.o" "../src/sevenSeg_new.c"
+Finished building: ../src/sevenSeg_new.c
+ 
+Building file: ../src/stopwatch.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/stopwatch.o" -I../../lab1B_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/stopwatch.d" -MT"src/stopwatch.o" -o "src/stopwatch.o" "../src/stopwatch.c"
+In file included from ../src/stopwatch.c:16:0:
+../../lab1B_bsp/microblaze_0/include/xbasic_types.h:111:2: warning: #warning The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert. [-Wcpp]
+ #warning  The xbasics_type.h file is deprecated and users should use xil_types.h and xil_assert.
+  ^~~~~~~
+../../lab1B_bsp/microblaze_0/include/xbasic_types.h:112:2: warning: #warning Please refer the Standalone BSP UG647 for further details [-Wcpp]
+ #warning  Please refer the Standalone BSP UG647 for further details
+  ^~~~~~~
+Finished building: ../src/stopwatch.c
+ 
+Building target: lab1B.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../lab1B_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v11.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "lab1B.elf"  ./src/sevenSeg_new.o ./src/stopwatch.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: lab1B.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size lab1B.elf  |tee "lab1B.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  13080	    512	   3360	  16952	   4238	lab1B.elf
+Finished building: lab1B.elf.size
+ 
+
+22:15:56 Build Finished (took 998ms)
+

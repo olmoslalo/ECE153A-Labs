@@ -1,0 +1,386 @@
+/*****************************************************************************
+ * lab2a.c for Lab2A of ECE 153a at UCSB
+ * Date of the Last Update:  October 23,2014
+ *****************************************************************************/
+
+#define AO_LAB2A
+
+#include "qpn_port.h"
+#include "bsp.h"
+#include "lab2a.h"
+#include "lcd.h"
+
+typedef struct Lab2ATag {               //Lab2A State machine
+	QActive super;
+} Lab2A;
+
+/* Setup state machines */
+/**********************************************************************/
+static QState Lab2A_initial(Lab2A *me);
+static QState Lab2A_on(Lab2A *me);
+static QState background(Lab2A *me);
+static QState volumeOverlay(Lab2A *me);
+static QState modeOverlay(Lab2A *me);
+
+/**********************************************************************/
+void clearVolumeOverlay() {
+	for (int i = volumeLevel; i > -1; i--) {
+		if (i == 0) {
+			setColor(0, 150, 255);
+			fillRect(45, 315, 195, 320);
+		} else if (i % 8 > 0 && i % 8 < 7) {
+			// square1
+			setColor(0, 50, 100);
+			fillRect(45, 315 - (5 * i), 75, 320 - (5 * i));
+
+			setColor(0, 150, 255);
+			fillRect(76, 315 - (5 * i), 85, 320 - (5 * i));
+
+			// square2
+			setColor(0, 50, 100);
+			fillRect(85, 315 - (5 * i), 115, 320 - (5 * i));
+
+			setColor(0, 150, 255);
+			fillRect(116, 315 - (5 * i), 125, 320 - (5 * i));
+
+			// square3
+			setColor(0, 50, 100);
+			fillRect(125, 315 - (5 * i), 155, 320 - (5 * i));
+
+			setColor(0, 150, 255);
+			fillRect(156, 315 - (5 * i), 165, 320 - (5 * i));
+
+			// square4
+			setColor(0, 50, 100);
+			fillRect(165, 315 - (5 * i), 195, 320 - (5 * i));
+		} else if (i % 8 == 0 || i % 8 == 7) {
+			setColor(0, 150, 255);
+			fillRect(45, 315 - (5 * i), 195, 320 - (5 * i));
+		}
+
+	}
+}
+
+void clearModeOverlay() {
+	for (int i = 24; i > 20; i--) {
+		if (i == 0) {
+			setColor(0, 150, 255);
+			fillRect(45, 315, 195, 320);
+		} else if (i % 8 > 0 && i % 8 < 7) {
+			// square1
+			setColor(0, 50, 100);
+			fillRect(45, 315 - (5 * i), 75, 320 - (5 * i));
+
+			setColor(0, 150, 255);
+			fillRect(76, 315 - (5 * i), 85, 320 - (5 * i));
+
+			// square2
+			setColor(0, 50, 100);
+			fillRect(85, 315 - (5 * i), 115, 320 - (5 * i));
+
+			setColor(0, 150, 255);
+			fillRect(116, 315 - (5 * i), 125, 320 - (5 * i));
+
+			// square3
+			setColor(0, 50, 100);
+			fillRect(125, 315 - (5 * i), 155, 320 - (5 * i));
+
+			setColor(0, 150, 255);
+			fillRect(156, 315 - (5 * i), 165, 320 - (5 * i));
+
+			// square4
+			setColor(0, 50, 100);
+			fillRect(165, 315 - (5 * i), 195, 320 - (5 * i));
+		} else if (i % 8 == 0 || i % 8 == 7) {
+			setColor(0, 150, 255);
+			fillRect(45, 315 - (5 * i), 195, 320 - (5 * i));
+		}
+
+	}
+}
+
+Lab2A AO_Lab2A;
+
+void Lab2A_ctor(void) {
+	Lab2A *me = &AO_Lab2A;
+	QActive_ctor(&me->super, (QStateHandler )&Lab2A_initial);
+}
+
+QState Lab2A_initial(Lab2A *me) {
+	xil_printf("\n\rInitialization");
+	initLCD();
+	clrScr();
+	volumeLevel = 0;
+	return Q_TRAN(&Lab2A_on);
+}
+
+QState Lab2A_on(Lab2A *me) {
+	xil_printf("Lab2A_on state\n");
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		xil_printf("Lab2A_on-EntrySIG\n");
+		setColor(0, 150, 255);
+		fillRect(0, 0, 240, 320);
+
+		setColor(0, 50, 100);
+		for (int i = 0; i < 8; i++) {
+			// square0
+			fillRect(5, 5 + (40 * i), 35, 35 + (40 * i));
+
+			// square1
+			fillRect(45, 5 + (40 * i), 75, 35 + (40 * i));
+
+			// square2
+			fillRect(85, 5 + (40 * i), 115, 35 + (40 * i));
+
+			// square3
+			fillRect(125, 5 + (40 * i), 155, 35 + (40 * i));
+
+			// square4
+			fillRect(165, 5 + (40 * i), 195, 35 + (40 * i));
+
+			// square5
+			fillRect(205, 5 + (40 * i), 235, 35 + (40 * i));
+		}
+	}
+
+	case Q_INIT_SIG: {
+		xil_printf("Lab2A_on-InitSIG\n");
+		return Q_TRAN(&background);
+	}
+	}
+
+	return Q_SUPER(&QHsm_top);
+}
+
+/* Create Lab2A_on state and do any initialization code if needed */
+/******************************************************************/
+
+QState background(Lab2A *me) {
+	//xil_printf("background state\n");
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		xil_printf("background-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		xil_printf("background-ENCODER_UP\n");
+		volumeLevel += 1;
+		if (volumeLevel > 63) {
+			volumeLevel = 63;
+		}
+		setColor(0, 250, 0);
+		fillRect(45, 320 - (5 * volumeLevel), 195, 320);
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_DOWN: {
+		xil_printf("background-ENCODER_DOWN\n");
+
+		volumeLevel -= 1;
+		if (volumeLevel < 0) {
+			volumeLevel = 0;
+		}
+		setColor(0, 250, 0);
+		fillRect(45, 320 - (5 * volumeLevel), 195, 320);
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_CLICK: {
+		xil_printf("background-ENCODER_CLICK\n");
+		volumeLevel = 0;
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case MODE1: {
+		xil_printf("background-MODE1\n");
+		//clearVolumeOverlay();
+		setColor(255, 0, 0);
+		setColorBg(0, 0, 0);
+		setFont(BigFont);
+		lcdPrint("Mode: 1", 45, 156);
+		return Q_TRAN(&modeOverlay);
+	}
+	}
+
+	return Q_SUPER(&Lab2A_on);
+
+}
+
+QState volumeOverlay(Lab2A *me) {
+	//xil_printf("volumeOverlay\n");
+
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("volumeOverlay-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		//xil_printf("volumeOverlay-ENCODER_UP\n");
+		volumeLevel += 1;
+		if (volumeLevel > 63) {
+			volumeLevel = 63;
+		}
+		setColor(0, 250, 0);
+		fillRect(45, 320 - (5 * volumeLevel), 195, 325 - (5 * volumeLevel));
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_DOWN: {
+		//xil_printf("volumeOverlay-ENCODER_DOWN\n");
+
+		volumeLevel -= 1;
+		if (volumeLevel < 0) {
+			volumeLevel = 0;
+		}
+
+		if (volumeLevel == 0) {
+			setColor(0, 150, 255);
+			fillRect(45, 315, 195, 320);
+		} else if (volumeLevel % 8 > 0 && volumeLevel % 8 < 7) {
+			// square1
+			setColor(0, 50, 100);
+			fillRect(45, 315 - (5 * volumeLevel), 75, 320 - (5 * volumeLevel));
+
+			setColor(0, 150, 255);
+			fillRect(76, 315 - (5 * volumeLevel), 85, 320 - (5 * volumeLevel));
+
+			// square2
+			setColor(0, 50, 100);
+			fillRect(85, 315 - (5 * volumeLevel), 115, 320 - (5 * volumeLevel));
+
+			setColor(0, 150, 255);
+			fillRect(116, 315 - (5 * volumeLevel), 125,
+					320 - (5 * volumeLevel));
+
+			// square3
+			setColor(0, 50, 100);
+			fillRect(125, 315 - (5 * volumeLevel), 155,
+					320 - (5 * volumeLevel));
+
+			setColor(0, 150, 255);
+			fillRect(156, 315 - (5 * volumeLevel), 165,
+					320 - (5 * volumeLevel));
+
+			// square4
+			setColor(0, 50, 100);
+			fillRect(165, 315 - (5 * volumeLevel), 195,
+					320 - (5 * volumeLevel));
+		} else if (volumeLevel % 8 == 0 || volumeLevel % 8 == 7) {
+			setColor(0, 150, 255);
+			fillRect(45, 315 - (5 * volumeLevel), 195, 320 - (5 * volumeLevel));
+		}
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_CLICK: {
+		xil_printf("volumeOverlay-ENCODER_CLICK\n");
+
+		clearVolumeOverlay();
+
+		volumeLevel = 0;
+		return Q_TRAN(&background);
+	}
+
+	case TIMEOUT: {
+		xil_printf("volumeOverlay-TIMEOUT\n");
+
+		clearVolumeOverlay();
+		clearModeOverlay();
+		return Q_TRAN(&background);
+	}
+	case MODE1: {
+		xil_printf("volumeOverlay-MODE1\n");
+
+		clearVolumeOverlay();
+		setColor(255, 0, 0);
+		setColorBg(0, 0, 0);
+		setFont(BigFont);
+		lcdPrint("Mode: 1", 45, 156);
+		return Q_TRAN(&modeOverlay);
+	}
+
+	}
+
+	return Q_SUPER(&Lab2A_on);
+}
+
+QState modeOverlay(Lab2A *me) {
+	xil_printf("modeOverlay\n");
+
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("modeOverlay-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		//xil_printf("modeOverlay-ENCODER_UP\n");
+		volumeLevel += 1;
+		if (volumeLevel > 63) {
+			volumeLevel = 63;
+		}
+		clearModeOverlay();
+		setColor(0, 250, 0);
+		fillRect(45, 320 - (5 * volumeLevel), 195, 320);
+
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_DOWN: {
+		//xil_printf("modeOverlay-ENCODER_DOWN\n");
+
+		volumeLevel -= 1;
+		if (volumeLevel < 0) {
+			volumeLevel = 0;
+		}
+
+		clearModeOverlay();
+		setColor(0, 250, 0);
+		fillRect(45, 320 - (5 * volumeLevel), 195, 320);
+
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_CLICK: {
+		xil_printf("modeOverlay-ENCODER_CLICK\n");
+
+		clearVolumeOverlay();
+
+		volumeLevel = 0;
+		return Q_TRAN(&background);
+	}
+
+	case TIMEOUT: {
+		xil_printf("modeOverlay-TIMEOUT\n");
+
+		clearVolumeOverlay();
+		clearModeOverlay();
+
+		return Q_TRAN(&background);
+	}
+	case MODE1: {
+		xil_printf("modeOverlay-MODE1\n");
+
+		clearVolumeOverlay();
+		clearModeOverlay();
+		setColor(255, 0, 0);
+		setColorBg(0, 0, 0);
+		setFont(BigFont);
+		lcdPrint("Mode: 1", 45, 156);
+		return Q_HANDLED();
+	}
+
+	}
+
+	return Q_SUPER(&Lab2A_on);
+
+}
+

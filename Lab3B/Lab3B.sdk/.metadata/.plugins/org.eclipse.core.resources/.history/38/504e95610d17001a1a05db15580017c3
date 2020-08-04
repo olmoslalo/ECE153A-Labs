@@ -1,0 +1,270 @@
+/*****************************************************************************
+ * lab2a.c for Lab2A of ECE 153a at UCSB
+ * Date of the Last Update:  October 23,2014
+ *****************************************************************************/
+
+#define AO_LAB2A
+
+#include "qpn_port.h"
+#include "bsp.h"
+#include "lab2a.h"
+#include "lcd.h"
+
+typedef struct Lab2ATag {               //Lab2A State machine
+	QActive super;
+} Lab2A;
+
+/* Setup state machines */
+/**********************************************************************/
+static QState Lab2A_initial(Lab2A *me);
+static QState Lab2A_on(Lab2A *me);
+static QState background(Lab2A *me);
+static QState volumeOverlay(Lab2A *me);
+static QState modeOverlay(Lab2A *me);
+
+/**********************************************************************/
+
+Lab2A AO_Lab2A;
+
+void Lab2A_ctor(void) {
+	Lab2A *me = &AO_Lab2A;
+	QActive_ctor(&me->super, (QStateHandler )&Lab2A_initial);
+}
+
+QState Lab2A_initial(Lab2A *me) {
+	//xil_printf("\n\rInitialization");
+	initLCD();
+	clrScr();
+	volumeLevel = 0;
+	return Q_TRAN(&Lab2A_on);
+}
+
+QState Lab2A_on(Lab2A *me) {
+	//xil_printf("Lab2A_on state\n");
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("Lab2A_on-EntrySIG\n");
+
+		// Black background
+		setColor(0, 0, 0);
+		fillRect(0, 0, 240, 320);
+
+		// Octave Border
+		setColor(255, 0, 0);
+		fillRect(30,0,30,320);
+
+		// Octave Rows
+		for(int i = 0; i < 10; i++)
+		{
+			if(i == 0)
+			{
+				fillRect(0, 30+i*29, 240, 30 + i*29);
+			}
+			else
+			{
+				fillRect(0, 30 + i*29, 30, 30 + i*29);
+			}
+		}
+		// Octave Numberss
+
+
+	}
+
+	case Q_INIT_SIG: {
+		xil_printf("Lab2A_on-InitSIG\n");
+		return Q_TRAN(&background);
+	}
+	}
+
+	return Q_SUPER(&QHsm_top);
+}
+
+/* Create Lab2A_on state and do any initialization code if needed */
+/******************************************************************/
+
+QState background(Lab2A *me) {
+	//xil_printf("background state\n");
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("background-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		//xil_printf("background-ENCODER_UP\n");
+
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_DOWN: {
+		//xil_printf("background-ENCODER_DOWN\n");
+
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_CLICK: {
+		//xil_printf("background-ENCODER_CLICK\n");
+
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case MODE1: {
+		//xil_printf("background-MODE1\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE2: {
+		//xil_printf("background-MODE2\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE3: {
+		//xil_printf("background-MODE3\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE4: {
+		//xil_printf("background-MODE4\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE5: {
+		//xil_printf("background-MODE5\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	}
+
+	return Q_SUPER(&Lab2A_on);
+
+}
+
+QState volumeOverlay(Lab2A *me) {
+	//xil_printf("volumeOverlay\n");
+
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("volumeOverlay-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		//xil_printf("volumeOverlay-ENCODER_UP\n");
+		return Q_HANDLED();
+	}
+
+	case ENCODER_DOWN: {
+		//xil_printf("volumeOverlay-ENCODER_DOWN\n");
+
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_CLICK: {
+		//xil_printf("volumeOverlay-ENCODER_CLICK\n");
+
+		return Q_TRAN(&background);
+	}
+
+	case TIMEOUT: {
+		//xil_printf("volumeOverlay-TIMEOUT\n");
+
+		return Q_TRAN(&background);
+	}
+	case MODE1: {
+		//xil_printf("volumeOverlay-MODE1\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE2: {
+		//xil_printf("volumeOverlay-MODE2\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+
+	case MODE3: {
+		//xil_printf("volumeOverlay-MODE3\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE4: {
+		//xil_printf("volumeOverlay-MODE4\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE5: {
+		//xil_printf("volumeOverlay-MODE5\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	}
+
+	return Q_SUPER(&Lab2A_on);
+}
+
+QState modeOverlay(Lab2A *me) {
+	//xil_printf("modeOverlay\n");
+
+	switch (Q_SIG(me)) {
+	case Q_ENTRY_SIG: {
+		//xil_printf("modeOverlay-EntrySIG\n");
+
+		return Q_HANDLED();
+	}
+
+	case ENCODER_UP: {
+		//xil_printf("modeOverlay-ENCODER_UP\n");
+
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_DOWN: {
+		//xil_printf("modeOverlay-ENCODER_DOWN\n");
+
+		return Q_TRAN(&volumeOverlay);
+	}
+
+	case ENCODER_CLICK: {
+		//xil_printf("modeOverlay-ENCODER_CLICK\n");
+
+		return Q_TRAN(&background);
+	}
+
+	case TIMEOUT: {
+		//xil_printf("modeOverlay-TIMEOUT\n");
+
+		return Q_TRAN(&background);
+	}
+	case MODE1: {
+		//xil_printf("modeOverlay-MODE1\n");
+
+		return Q_HANDLED();
+	}
+	case MODE2: {
+		//xil_printf("modeOverlay-MODE1\n");
+
+		return Q_HANDLED();
+	}
+
+	case MODE3: {
+		//xil_printf("modeOverlay-MODE3\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE4: {
+		//xil_printf("modeOverlay-MODE4\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	case MODE5: {
+		//xil_printf("modeOverlay-MODE5\n");
+
+		return Q_TRAN(&modeOverlay);
+	}
+	}
+
+	return Q_SUPER(&Lab2A_on);
+
+}
